@@ -2,15 +2,16 @@
 import os, sys
 from wallaby import *
 from actions import *
+from sensors import *
 
 def main():
-    startup()
-    goToBot()
-    grabBotGuy()
-    turnToCow()
-    cowSpot()
     print "Hello Lego"
-
+    #startup()
+    #goToBot()
+    #grabBotGuy()
+    #turnToCow()
+    #lookForCow()
+    driveToBlackLine()
 
 
 

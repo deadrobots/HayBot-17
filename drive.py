@@ -9,3 +9,7 @@ def driveTimed(left, right, time):
 def sleep(time):
 
     driveTimed(0, 0, time)
+
+def drive(left, right):
+    motor(0,left)
+    motor(3,right)

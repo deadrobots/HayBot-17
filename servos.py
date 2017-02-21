@@ -17,3 +17,7 @@ def moveServo(servo, endPos, speed):
         msleep(10)
     set_servo_position(servo, endPos)
     msleep(10)
+
+def clawUp():
+    enable_servos()
+    set_servo_position(2,100)
