@@ -9,6 +9,7 @@ def main():
     act.grabHay()
     act.goToBackWall()
     act.turnToHay()
+    act.grabFirstHayBale()
 
     act.shutdown()
 
