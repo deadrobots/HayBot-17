@@ -1,21 +1,11 @@
 #!/usr/bin/python
-import os, sys
-from wallaby import *
-from actions import *
-from sensors import *
+
+import actions as act
 
 def main():
-    print "Hello Lego"
-    #startup()
-    #goToBot()
-    #grabBotGuy()
-    #turnToCow()
-    #lookForCow()
-    driveToBlackLine()
+    print "running"
+    act.init()
+    act.goToBotAndCow()
 
-
-
-if __name__== "__main__":
-    sys.stdout =\
-        os.fdopen(sys.stdout.fileno(),"w",0)
+if __name__ == "__main__":
     main()
