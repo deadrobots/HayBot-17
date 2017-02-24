@@ -16,7 +16,8 @@ from wallaby import seconds
 from wallaby import freeze
 from wallaby import set_servo_position
 from wallaby import get_servo_position
-
+import drive as d
+import wallaby as w
 
 def waitForButton():
     print "Press Button..."
@@ -47,7 +48,7 @@ DELAY = 10
 
 # Servo Control #
 
-def move_servo(servo, endPos, speed):  # Moves a servo with increment "speed".
+def move_servo(servo, endPos, speed=10):  # Moves a servo with increment "speed".
     # speed of 1 is slow
     # speed of 2000 is fast
     # speed of 10 is the default
@@ -89,4 +90,96 @@ def setWait(DELAY):  # Sets wait time in seconds before breaking a loop.
 
 def getWait():  # Used to break a loop after using "setWait". An example would be: setWiat(10) | while true and getWait(): do something().
     return seconds() < time
+
+def onBlackFront():
+    return w.analog(c.FRONT_TOPHAT) > c.frontLineFollowerGrey
+
+
+def onBlackBack():
+    return w.analog(c.REAR_TOPHAT) > c.frontLineFollowerGrey
+
+
+def onBlackFront():
+    return w.analog(c.FRONT_TOPHAT) > c.frontLineFollowerGrey
+
+def onBlackBack():
+    return w.analog(c.REAR_TOPHAT) > c.frontLineFollowerGrey
+
+def timedLineFollowLeft(time):
+    sec = seconds() + time
+    while seconds() < sec:
+        if onBlackFront():
+            d.driveTimed(20, 90, 20)
+        else:
+            d.driveTimed(90, 20, 20)
+        msleep(10)
+
+
+# Follows black line on right for specified amount of time
+def timedLineFollowRight(time):
+    sec = seconds() + time
+    while seconds() < sec:
+        if not onBlackFront():
+            d.driveTimed(20, 90, 20)
+        else:
+            d.driveTimed(90, 20, 20)
+        msleep(10)
+
+
+def timedLineFollowRightSmooth(time):
+    sec = seconds() + time
+    while seconds() < sec:
+        if not onBlackFront():
+            d.driveTimed(20, 40, 20)
+        else:
+            d.driveTimed(40, 20, 20)
+        msleep(10)
+
+
+def lineFollowRightSmoothCount(amount):
+    count = 0
+    while count < amount:
+        if not onBlackFront():
+            d.driveTimed(10, 30, 10)
+            count = count + 1
+        else:
+            d.driveTimed(30, 10, 10)
+            count = 0
+
+
+def timedLineFollowLeftSmooth(time):
+    sec = seconds() + time
+    while seconds() < sec:
+        if onBlackFront():
+            d.driveTimed(20, 40, 20)
+        else:
+            d.driveTimed(40, 20, 20)
+        msleep(10)
+
+
+def timedLineFollowLeftBack(time):  # follows on starboard side
+    sec = seconds() + time
+    while seconds() < sec:
+        if onBlackBack():
+            d.driveTimed(-90, -20, 20)
+        else:
+            d.driveTimed(-20, -90, 20)
+        msleep(10)
+
+
+def crossBlackFront():
+    while not onBlackFront():  # wait for black
+        pass
+    while onBlackFront():  # wait for white
+        pass
+    ao()
+
+
+def crossBlackBack():
+    while not onBlackBack():  # wait for black
+        pass
+    while onBlackBack():  # wait for white
+        pass
+    ao()
+
 

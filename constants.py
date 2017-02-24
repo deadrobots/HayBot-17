@@ -40,3 +40,7 @@ clawOpen = 1800
 
 cowClawOpen = 400
 cowClawClose = 1550
+
+#Tophat values
+FRONT_TOPHAT = 0
+frontLineFollowerGrey = 1300

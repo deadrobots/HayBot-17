@@ -1,17 +1,21 @@
 import motorsPlusPlus as x
 import utils as u
 import constants as c
-from wallaby import enable_servos, msleep
+from wallaby import enable_servos, msleep, seconds
+
+headToHead = True
+
 def init():
     enable_servos()
     u.move_servo(c.servoClaw, c.clawOpen, 100)
     u.move_servo(c.servoArm, c.armDown, 100)
     u.move_servo(c.servoCow,c.cowMid,100)
     msleep(300)
+    c.startTime = seconds()
 
 def goToBotAndCow():
-    x.drive_speed(28, 100)
-    x.rotate(87, 50)
+    x.drive_speed(28.5, 100)
+    x.rotate(90, 50)
     u.move_servo(c.servoArm, c.armBotguy, 10)
     x.drive_speed(16, 100)
     u.move_servo(c.servoArm, c.armDown, 10)
@@ -35,20 +39,38 @@ def goToBotAndCow():
     u.move_servo(c.servoCow, c.cowDown, 10)
     msleep(1000)
     u.move_servo(c.servoCowClaw, c.cowClawClose, 10)
-    msleep(500)
+    msleep(5000)
     u.move_servo(c.servoCow, c.cowUp,10)
     msleep(300)
-    x.drive_speed(43, 100)
-    x.rotate(30, 50)
     x.drive_speed(36, 100)
-    x.drive_speed(6, -50)
-    x.rotate(89, 50)
-    x.drive_speed(30, 100)
-    x.drive_speed(4, -50)
-    x.rotate(79, 50)
-    u.move_servo(c.servoArm, c.armBotguy,10)
-    msleep(300)
-    x.drive_speed(70, 75)
-    u.move_servo(c.servoCow, c.cowDown, 10)
-    msleep(300)
-    x.rotate(-45, 50)
+    if (headToHead):
+        x.rotate(-80, 50)
+        x.drive_speed(28, 50)
+        x.drive_speed(-5, 50)
+        x.rotate(-97, 50)
+        u.move_servo(c.servoArm, c.armDown)
+        x.drive_speed(15, 75)
+        u.move_servo(c.servoArm, c.armBotguy)
+        x.drive_speed(14,75)
+        x.rotate(83,50)
+        x.drive_speed(15,70)
+        u.move_servo(c.servoArm, c.armUpBotguy)
+        x.rotate(97 , 50)
+        x.drive_speed(25,100)
+    else :
+        x.rotate(25, 50)
+        x.drive_speed(36, 100)
+        x.drive_speed(6, -50)
+        x.rotate(89, 50)
+        x.drive_speed(30, 100)
+        x.drive_speed(4, -50)
+        x.rotate(79, 50)
+        u.move_servo(c.servoArm, c.armBotguy,10)
+        msleep(300)
+        x.drive_speed(70, 75)
+        u.move_servo(c.servoCow, c.cowDown, 10)
+        msleep(300)
+        x.rotate(-45, 50)
+
+
+    print "Seconds elapsed: " + seconds() - c.startTime
