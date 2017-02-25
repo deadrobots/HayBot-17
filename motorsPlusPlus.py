@@ -29,7 +29,7 @@ from wallaby import set_servo_position
 INCHES_TO_TICKS = 213#169   #205 - 161     #156#127#50 cm #265
 WHEEL_DISTANCE = 4.75 #205 - 4.25  # Distance between the two wheels
 
-lAdjust = 1.03 # adjust left wheel counter to fix drift
+lAdjust = 1.00 # adjust left wheel counter to fix drift
 
 if isClone:
     INCHES_TO_TICKS = 190

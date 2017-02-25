@@ -9,8 +9,8 @@ import wallaby as w
 startTime = -1
 
 # Motor ports
-LMOTOR = 3
-RMOTOR = 0
+LMOTOR = 0
+RMOTOR = 3
 
 # Digital ports
 CLONE_SWITCH = 9
@@ -24,12 +24,12 @@ servoClaw = 0
 servoArm = 3
 
 
-armUp = 1500
-armCube = 1200
+armUp = 1700
+armCube = 1400
 armDown = 500
 
-clawClose = 600
-clawMid = 1200
+clawClose = 850
+clawMid = 1350
 clawOpen = 1900
 
 #Tophat values
