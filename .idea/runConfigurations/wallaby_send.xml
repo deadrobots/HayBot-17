@@ -10,12 +10,12 @@
     <option name="IS_MODULE_SDK" value="true" />
     <option name="ADD_CONTENT_ROOTS" value="true" />
     <option name="ADD_SOURCE_ROOTS" value="true" />
-    <module name="Bovot-17" />
+    <module name="Hay-Bot" />
     <option name="SCRIPT_NAME" value="wallaby-local" />
     <option name="PARAMETERS" value="" />
     <option name="SHOW_COMMAND_LINE" value="false" />
     <method>
-      <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_External Tools_wallaby-208" />
+      <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_External Tools_wallaby-203" />
     </method>
   </configuration>
 </component>

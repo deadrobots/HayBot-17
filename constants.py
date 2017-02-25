@@ -9,8 +9,8 @@ import wallaby as w
 startTime = -1
 
 # Motor ports
-LMOTOR = 0
-RMOTOR = 3
+LMOTOR = 3
+RMOTOR = 0
 
 # Digital ports
 CLONE_SWITCH = 9
@@ -20,26 +20,17 @@ isClone = w.digital(CLONE_SWITCH)
 
 
 # Servos
-servoArm = 0
-servoCow = 1
-servoClaw = 2
-servoCowClaw = 3
+servoClaw = 0
+servoArm = 3
 
 
-armUp = 580
-armUpBotguy = 0
-armBotguy = 530
-armDown = 920
+armUp = 1300
+armCube = 1200
+armDown = 500
 
-cowDown = 2047
-cowMid = 1700
-cowUp = 800
-
-clawClose = 930
-clawOpen = 1800
-
-cowClawOpen = 400
-cowClawClose = 1550
+clawClose = 700
+clawMid = 1200
+clawOpen = 1900
 
 #Tophat values
 FRONT_TOPHAT = 0
