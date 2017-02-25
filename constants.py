@@ -24,11 +24,11 @@ servoClaw = 0
 servoArm = 3
 
 
-armUp = 1300
+armUp = 1500
 armCube = 1200
 armDown = 500
 
-clawClose = 700
+clawClose = 600
 clawMid = 1200
 clawOpen = 1900
 
