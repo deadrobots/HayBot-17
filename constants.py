@@ -25,7 +25,7 @@ servoArm = 3
 
 
 armUp = 1700
-armCube = 1400
+armCube = 950#1400
 armDown = 500
 
 clawClose = 850

@@ -26,13 +26,15 @@ from wallaby import seconds
 from wallaby import set_servo_position
 
 # Drive Constants
-INCHES_TO_TICKS = 213#169   #205 - 161     #156#127#50 cm #265
-WHEEL_DISTANCE = 4.75 #205 - 4.25  # Distance between the two wheels
-
-lAdjust = 1.00 # adjust left wheel counter to fix drift
+INCHES_TO_TICKS = 213  # 169   #205 - 161     #156#127#50 cm #265
+WHEEL_DISTANCE = 4.75  # 205 - 4.25  # Distance between the two wheels
+ADJUST = 1.00  # adjust left wheel counter to fix drift
 
 if isClone:
-    INCHES_TO_TICKS = 190
+    # Drive Constants
+    INCHES_TO_TICKS = 213  # 169   #205 - 161     #156#127#50 cm #265
+    WHEEL_DISTANCE = 4.75  # 205 - 4.25  # Distance between the two wheels
+    ADJUST = 1.07  # adjust left wheel counter to fix drift
 
 
 # Motor Control #
@@ -56,7 +58,7 @@ def _right_ticks():  # Returns the right motor's tick count.
 
 
 def _left_ticks():  # Returns the left motor's tick count.
-    return abs(get_motor_position_counter(LMOTOR)* lAdjust)
+    return abs(get_motor_position_counter(LMOTOR) * ADJUST)
 
 
 def _clear_ticks():  # Clears the motor ticks.
@@ -158,8 +160,8 @@ def drive_timed(lmotor, rmotor, time):
     print get_motor_position_counter(RMOTOR)
 
 
-def drive_condition(lmotor, rmotor, testFunction,
-                    state=True):  # Drives while "testFunction" returns "state" | an example would be: x.drive_condition(50, 50, x.getWait)
+# Drives while "testFunction" returns "state" | an example would be: x.drive_condition(50, 50, x.getWait)
+def drive_condition(lmotor, rmotor, testFunction, state=True):
     print "driving under condition"
     _clear_ticks()
     if lmotor == 0 or rmotor == 0:
@@ -230,4 +232,3 @@ def pivot_left(deg, speed):  # Pivots by moving the left wheel.
     while _left_ticks() <= ticks:
         pass
     freeze_motors()
-
