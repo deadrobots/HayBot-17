@@ -96,26 +96,29 @@ def turnToHay():
     x.rotate(90, 50)
     x.drive_condition(100,100,seeHay)
     center()
-    x.drive_speed(-2, 50)
+    x.drive_speed(-2.4, 25)
     msleep(500)
 
 def stackHay():
-    u.move_servo(c.servoArm, c.armCube, 35)
+    u.move_servo(c.servoArm, c.armCube, 20)#35
     msleep(300)
-    u.move_servo(c.servoClaw, c.clawMid, 50)
+    u.move_servo(c.servoClaw, c.clawMid, 30)#50
     msleep(300)
-    u.move_servo(c.servoClaw, c.clawOpen, 50)
+    u.move_servo(c.servoClaw, c.clawOpen, 30)#50
     msleep(300)
-    x.drive_speed(1, -50)
-    #x.pivot_right(10, 5)
+    x.drive_speed(1, -25)
+    msleep(300)
+    x.rotate(3, 5)
     msleep(1000)
-    u.move_servo(c.servoArm, c.armDown, 40)
+    u.move_servo(c.servoArm, c.armDown, 20)#40
+    msleep(300)
+    x.rotate(3, -5)
     msleep(300)
     x.drive_speed(2.11, 40)
-    u.move_servo(c.servoClaw, c.clawClose, 50)
+    u.move_servo(c.servoClaw, c.clawClose, 30)#50
     msleep(300)
     x.drive_speed(3, -50)
-    u.move_servo(c.servoArm, c.armUp, 50)
+    u.move_servo(c.servoArm, c.armUp, 30)#50
     # u.move_servo(c.servoArm, c.armCube, 50)
     # msleep(300)
     # u.move_servo(c.servoClaw, c.clawMid, 50)
@@ -142,29 +145,45 @@ def turnToSecondHay():
     x.pivot_left(-112,50)
     x.drive_condition(100, 100, seeHay)
     center()
-    x.drive_speed(-2, 50)
+    x.drive_speed(-2.4, 25)
     msleep(500)
 
 def stackSecondHay():
     # x.drive_speed(6.2, 50)
     # msleep(500)
-    u.move_servo(c.servoArm, c.armCube, 35)
+    u.move_servo(c.servoArm, c.armCube, 20)#35
     msleep(300)
-    u.move_servo(c.servoClaw, c.clawMid, 50)
+    u.move_servo(c.servoClaw, c.clawMid, 30)#50
     msleep(300)
-    u.move_servo(c.servoClaw, c.clawOpen, 50)
+    u.move_servo(c.servoClaw, c.clawOpen, 30)#50
     msleep(300)
 
-    x.drive_speed(1, -50)
+    x.drive_speed(1, -25)
+    msleep(300)
+    x.rotate(3, 5)
     # x.rotate(5, 50)
     msleep(300)
-    u.move_servo(c.servoArm, c.armDown, 40)
+    u.move_servo(c.servoArm, c.armDown, 20)#40
+    msleep(300)
+    x.rotate(3, -5)
     msleep(300)
     x.drive_speed(2.11, 40)
-    u.move_servo(c.servoClaw, c.clawClose, 50)
+    u.move_servo(c.servoClaw, c.clawClose, 30)#50
     msleep(300)
     x.drive_speed(3, -50)
-    u.move_servo(c.servoArm, c.armUp, 50)
+    u.move_servo(c.servoArm, c.armUp, 30)#50
+
+def hayToBarn():
+    x.rotate(180,30)
+    x.drive_speed(12,60)
+    u.move_servo(c.servoArm, c.armCube, 10)
+    x.drive_speed(5, 60)
+    u.move_servo(c.servoArm, c.armDown,15)
+    u.move_servo(c.servoClaw, c.clawOpen,30)
+    x.drive_speed(5, -30)
+    x.drive_speed(10, -70)
+
+
 
 
 

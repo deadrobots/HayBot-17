@@ -90,8 +90,9 @@ def arc_radius(angle, turnRadius, speed):  # Turns the robot "angle" degrees by 
     largeCircum = pi * 2 * largeCircRadius
     smallCircSeg = (angle / 360.0) * smallCircum
     largeCircSeg = (angle / 360.0) * largeCircum
-    if turnRadius < 0:
-        speed = -speed
+    if turnRadius < 0:    msleep(300)
+    x.pivot_right(3, -5)
+    speed = -speed
     _clear_ticks()
     smallTicks = abs(INCHES_TO_TICKS * smallCircSeg)
     largeTicks = abs(INCHES_TO_TICKS * largeCircSeg)
