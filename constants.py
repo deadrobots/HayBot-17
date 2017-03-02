@@ -22,11 +22,15 @@ isClone = w.digital(CLONE_SWITCH)
 # Servos
 servoClaw = 0
 servoArm = 3
+servoGrabber = 1
 
-
+armUpPom = 390
 armUp = 1700
 armCube = 950#1400
 armDown = 500
+
+grabberOpen = 750
+grabberClose = 1540
 
 clawClose = 850
 clawMid = 1350

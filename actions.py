@@ -65,8 +65,8 @@ def stackHayTest():
 def init():
     enable_servos()
     u.move_servo(c.servoClaw, c.clawOpen, 100)
-    u.DEBUG()
-    u.move_servo(c.servoArm, c.armDown, 100)
+    u.move_servo(c.servoArm, c.armUpPom, 100)
+    u.move_servo(c.servoGrabber, c.grabberOpen, 100)
     msleep(300)
     u.waitForButton()
     c.startTime = seconds()
@@ -75,13 +75,16 @@ def init():
 def getFirstHay():
     x.drive_speed(1.5, 50)
     u.move_servo(c.servoClaw, c.clawClose, 50)
-    msleep(300)
-    u.move_servo(c.servoArm, c.armUp, 50)
-    msleep(300)
+    x.drive_speed(5, 50)
+    u.move_servo(c.servoGrabber, c.grabberClose, 10)
+    u.move_servo(c.servoArm, c.armUp, 100)
+    # msleep(300)
 
 def goToFarWall():
-    x.drive_speed(3, 50)
-    x.pivot_left(90, 50)
+    # x.drive_speed(3, 50)
+    # x.pivot_left(90, 50)
+    x.pivot_left(75, 50)
+    # u.DEBUGwithWait()
     # x.drive_speed(87, 100)
     x.drive_condition(100, 100, seeWall)
     x.drive_speed(14,100)
