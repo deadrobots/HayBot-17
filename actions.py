@@ -65,6 +65,7 @@ def stackHayTest():
 def init():
     enable_servos()
     u.move_servo(c.servoClaw, c.clawOpen, 100)
+    u.DEBUG()
     u.move_servo(c.servoArm, c.armDown, 100)
     msleep(300)
     u.waitForButton()
