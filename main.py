@@ -16,6 +16,8 @@ def main():
     act.turnToSecondHay()
     act.stackSecondHay()
     act.hayToBarn()
+    act.goToFurrow()
+    act.getToCenter()
     u.DEBUGwithWait()
 
 if __name__ == "__main__":

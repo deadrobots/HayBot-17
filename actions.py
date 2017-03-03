@@ -184,8 +184,32 @@ def hayToBarn():
     x.drive_speed(5, 60)
     u.move_servo(c.servoArm, c.armDown,15)
     u.move_servo(c.servoClaw, c.clawOpen,30)
+    x.rotate(3, 5)
     x.drive_speed(5, -30)
     x.drive_speed(10, -70)
+
+def goToFurrow():
+    x.rotate(180, 50)
+    u.move_servo(c.servoArm, c.armUp, 10)
+    x.drive_speed(15.5, 50)
+
+def getToCenter():
+    x.drive_speed(-10, 50)
+    msleep(100)
+    x.rotate(90, 50)
+    msleep(100)
+    x.drive_speed(40, 90)
+    msleep(100)
+    x.rotate(-90,50)
+    msleep(100)
+    x.drive_speed(23, 70)
+    x.drive_speed(-3, 50)
+    msleep(100)
+    x.rotate(-90, 50)
+    u.move_servo(c.servoArm, c.armJustOffTheGround, 10)
+    msleep(100)
+
+
 
 
 
