@@ -75,6 +75,7 @@ def init():
 def getFirstHay():
     x.drive_speed(1.5, 50)
     u.move_servo(c.servoClaw, c.clawClose, 50)
+    exit(0)
     x.drive_speed(5, 50)
     u.move_servo(c.servoGrabber, c.grabberClose, 10)
     u.move_servo(c.servoArm, c.armUp, 100)

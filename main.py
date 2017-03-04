@@ -6,6 +6,7 @@ import utils as u
 def main():
     print "running"
     act.init()
+    exit(0)
     # act.test()
     act.getFirstHay()
     act.goToFarWall()

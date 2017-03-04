@@ -18,7 +18,6 @@ RIGHT_BUTTON = 13
 
 isClone = w.digital(CLONE_SWITCH)
 
-
 # Servos
 servoClaw = 0
 servoArm = 3
@@ -26,17 +25,41 @@ servoGrabber = 1
 
 armUpPom = 390
 armUp = 1700
-armCube = 950#1400
+armCube = 1050#1400
 armJustOffTheGround = 400
 armDown = 500
 
 grabberOpen = 750
 grabberClose = 1540
 
-clawClose = 850
-clawMid = 1350
-clawOpen = 1900
+clawClose = 600
+clawMid = 900
+clawOpen = 1400
 
 #Tophat values
 FRONT_TOPHAT = 0
 frontLineFollowerGrey = 1300
+
+if isClone:
+
+    # Servos
+    servoClaw = 0
+    servoArm = 3
+    servoGrabber = 1
+
+    armUpPom = 390
+    armUp = 1700
+    armCube = 950#1400
+    armJustOffTheGround = 400
+    armDown = 500
+
+    grabberOpen = 750
+    grabberClose = 1540
+
+    clawClose = 850
+    clawMid = 1350
+    clawOpen = 1900
+
+    #Tophat values
+    FRONT_TOPHAT = 0
+    frontLineFollowerGrey = 1300
