@@ -1,35 +1,22 @@
 #!/usr/bin/python
-import os, sys
+
 import actions as act
+import utils as u
 
 def main():
+    print "running"
     act.init()
-
-    act.waitForButton()
-    act.grabHay()
-    act.goToBackWall()
+    # act.test()
+    act.getFirstHay()
+    act.goToFarWall()
     act.turnToHay()
-    act.grabFirstHayBale()
-
-    act.shutdown()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    act.stackHay()
+    act.turnToSecondHay()
+    act.stackSecondHay()
+    act.turnToSecondHay()
+    act.stackSecondHay()
+    act.hayToBarn()
+    u.DEBUGwithWait()
 
 if __name__ == "__main__":
-    sys.stdout = os.fdopen(sys.stdout.fileno(), "w", 0)
-    main();
+    main()
