@@ -75,7 +75,6 @@ def init():
 def getFirstHay():
     x.drive_speed(1.5, 50)
     u.move_servo(c.servoClaw, c.clawClose, 50)
-    exit(0)
     x.drive_speed(5, 50)
     u.move_servo(c.servoGrabber, c.grabberClose, 10)
     u.move_servo(c.servoArm, c.armUp, 100)
@@ -86,7 +85,8 @@ def goToFarWall():
     # x.pivot_left(90, 50)
     x.pivot_left(75, 50)
     # u.DEBUGwithWait()
-    # x.drive_speed(87, 100)
+    x.drive_speed(75, 100)
+    u.DEBUG()
     x.drive_condition(100, 100, seeWall)
     x.drive_speed(14,100)
 
