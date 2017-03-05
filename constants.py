@@ -47,14 +47,14 @@ if isClone:
     servoArm = 3
     servoGrabber = 1
 
-    armUpPom = 390
-    armUp = 1700
-    armCube = 950#1400
-    armJustOffTheGround = 400
-    armDown = 500
+    armUpPom = 640#390
+    armUp = 2047#1700
+    armCube = 1250#950#1400
+    armJustOffTheGround = 650#400
+    armDown = 420#500
 
     grabberOpen = 750
-    grabberClose = 1540
+    grabberClose = 1750#1540
 
     clawClose = 850
     clawMid = 1350
