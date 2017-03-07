@@ -6,7 +6,8 @@ import utils as u
 def main():
     print "running"
     act.init()
-    # act.test()
+
+    #act.test()
     act.getFirstHay()
     act.goToFarWall()
     act.turnToHay()
@@ -16,8 +17,9 @@ def main():
     act.turnToSecondHay()
     act.stackSecondHay()
     act.hayToBarn()
-    u.DEBUGwithWait()
     act.goToFurrow()
+    act.putPomsInFurrow()
+    u.DEBUGwithWait()
     act.getToCenter()
     u.DEBUGwithWait()
 
