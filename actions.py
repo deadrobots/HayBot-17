@@ -63,6 +63,7 @@ def stackHayTest():
     # msleep(2000)
 
 def init():
+    print "IS INIT"
     enable_servos()
     u.move_servo(c.servoClaw, c.clawOpen, 100)
     u.move_servo(c.servoArm, c.armUpPom, 100)
@@ -83,7 +84,7 @@ def getFirstHay():
 def goToFarWall():
     # x.drive_speed(3, 50)
     # x.pivot_left(90, 50)
-    x.pivot_left(75, 50)
+    x.pivot_left(70, 50)
     u.move_servo(c.servoArm, c.armUp, 10)
     #u.DEBUGwithWait()
     x.drive_speed(75, 100)
@@ -202,9 +203,10 @@ def hayToBarn():
     x.drive_speed(10, -70)
 
 def goToFurrow():
-    x.rotate(150, 50)
+    x.rotate(165, 50)
     u.move_servo(c.servoArm, c.armUp, 10)
-    x.drive_speed(15.5, 50)
+    x.drive_speed(10, 70) #(10,50)
+
 
 def putPomsInFurrow():
     u.move_servo(c.servoArm, c.armDownFurrow, 10)
@@ -213,6 +215,7 @@ def putPomsInFurrow():
     u.move_servo(c.servoGrabber, c.grabberClose, 10)
     msleep(300)
     u.move_servo(c.servoGrabber, c.grabberOpen, 10)
+    u.DEBUGwithWait()
 
 def getToCenter():
     x.drive_speed(-10, 50)
