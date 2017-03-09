@@ -203,9 +203,9 @@ def hayToBarn():
     x.drive_speed(10, -70)
 
 def goToFurrow():
-    x.rotate(165, 50)
+    x.rotate(180, 50)
     u.move_servo(c.servoArm, c.armUp, 10)
-    x.drive_speed(10, 70) #(10,50)
+    x.drive_speed(15.5, 70) #(10,50)
 
 
 def putPomsInFurrow():
@@ -215,6 +215,9 @@ def putPomsInFurrow():
     u.move_servo(c.servoGrabber, c.grabberClose, 10)
     msleep(300)
     u.move_servo(c.servoGrabber, c.grabberOpen, 10)
+
+def getToRamp():
+    x.drive_speed(-5, 100)
     u.DEBUGwithWait()
 
 def getToCenter():

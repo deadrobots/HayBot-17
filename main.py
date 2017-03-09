@@ -5,6 +5,7 @@ import utils as u
 
 def main():
     print "running"
+    print "testing"
     act.init()
 
     #act.test()
@@ -19,9 +20,11 @@ def main():
     act.hayToBarn()
     act.goToFurrow()
     act.putPomsInFurrow()
+    act.getToRamp()
     u.DEBUGwithWait()
     act.getToCenter()
-    u.DEBUGwithWait()
+
+
 
 if __name__ == "__main__":
     # set print to unbuffered
