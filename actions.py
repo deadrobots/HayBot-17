@@ -85,7 +85,7 @@ def goToFarWall():
     # x.drive_speed(3, 50)
     # x.pivot_left(90, 50)
     x.pivot_left(70, 50)
-    u.move_servo(c.servoArm, c.armUp, 10)
+    #u.move_servo(c.servoArm, c.armUp, 10)
     #u.DEBUGwithWait()
     x.drive_speed(73, 100)
     x.drive_condition(100, 100, seeWall)
@@ -200,6 +200,7 @@ def hayToBarn():
     u.move_servo(c.servoClaw, c.clawOpen,30)
     x.rotate(3, 5)
     x.drive_speed(5, -30)
+    u.move_servo(c.servoArm, c.armDownFurrow, 10)
     x.drive_speed(10, -70)
 
 def goToFurrow():
@@ -211,18 +212,20 @@ def putPomsInFurrow():
     u.move_servo(c.servoArm, c.armDownFurrow, 10)
     u.move_servo(c.servoGrabber, c.grabberOpen, 10)
     x.pivot_right(-30, 35)
+    u.move_servo(c.servoArm, c.armUp, 10)
     u.move_servo(c.servoGrabber, c.grabberClose, 10)
-    msleep(300)
+    u.move_servo(c.servoArm, c.armDownFurrow, 10)
     u.move_servo(c.servoGrabber, c.grabberOpen, 10)
-    x.pivot_right(-40,35)
+    msleep(300)
+    #u.move_servo(c.servoGrabber, c.grabberOpen, 10)
+    #x.pivot_right(-40,35)
     u.move_servo_timed(c.servoArm, c.armUp, 10)
-    x.pivot_right(50,35)
+    #x.pivot_right(50,35)
     msleep(300)
 
 def getToRamp():
     x.drive_speed(-15, 100)
     x.rotate(108,50)
-
 
 def getToCenter():
     x.drive_speed(-10, 50)
