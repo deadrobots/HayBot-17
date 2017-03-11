@@ -1,7 +1,6 @@
 import motorsPlusPlus as x
 import utils as u
 import constants as c
-from wallaby import enable_servos, msleep, seconds, analog, motor
 from wallaby import *
 
 headToHead = True
@@ -10,17 +9,8 @@ def test():
     print('testing')
     enable_servos()
     u.move_servo_timed(c.servoArm, c.armUp, 10)
-    # u.waitForButton()
     x.drive_speed(86,100)
-    # motor_power(c.LMOTOR, 100)
-    # motor_power(c.RMOTOR, 100)
-    # msleep(11000)
     u.DEBUG()
-    # x.rotate(90, 25)
-    # from wallaby import *
-    # motor(c.LMOTOR,50)
-    # motor(c.RMOTOR,0)
-    # msleep(5000)
 
 def stackHayTest():
     enable_servos()
@@ -47,23 +37,9 @@ def stackHayTest():
     msleep(300)
     u.move_servo(c.servoArm, c.armUp, 50)
     msleep(1500)
-    #
-    # u.move_servo(c.servoArm, c.armCube, 50)
-    # msleep(300)
-    # u.move_servo(c.servoClaw, c.clawMid, 50)
-    # msleep(300)
-    # u.move_servo(c.servoClaw, c.clawOpen, 50)
-    # msleep(300)
-    # u.move_servo(c.servoArm, c.armDown, 40)
-    # msleep(300)
-    # x.drive_speed(1.5,40)
-    # u.move_servo(c.servoClaw, c.clawClose, 50)
-    # msleep(300)
-    # u.move_servo(c.servoArm, c.armUp, 50)
-    # msleep(2000)
+
 
 def init():
-    print "IS INIT"
     enable_servos()
     u.move_servo(c.servoClaw, c.clawOpen, 100)
     u.move_servo(c.servoArm, c.armUpPom, 100)
@@ -74,19 +50,18 @@ def init():
 
 
 def getFirstHay():
-    x.drive_speed(2, 50)
-    u.move_servo(c.servoClaw, c.clawClose, 50)
-    x.drive_speed(5, 50)
-    u.move_servo(c.servoGrabber, c.grabberClose, 10)
+    x.drive_speed(2, 75)#50
+    u.move_servo(c.servoClaw, c.clawClose, 70)#50
+    x.drive_speed(5, 75)#50
+    u.move_servo(c.servoGrabber, c.grabberClose, 50)#30
     u.move_servo(c.servoArm, c.armUp, 100)
     # msleep(300)
 
 def goToFarWall():
-    # x.drive_speed(3, 50)
-    # x.pivot_left(90, 50)
-    x.pivot_left(70, 50)
-    #u.move_servo(c.servoArm, c.armUp, 10)
-    #u.DEBUGwithWait()
+    if c.isClone:
+        x.pivot_left(70, 50)
+    else:
+        x.pivot_left(68, 50)
     x.drive_speed(73, 100)
     x.drive_condition(100, 100, seeWall)
     x.drive_speed(14,100)
@@ -98,6 +73,8 @@ def seeWall():
 
 def seeHay():
     return analog(0) < 2200
+def seeLine():
+    return analog(5) < 3000
 
 def turnToHay():
     if c.isClone:
@@ -107,21 +84,23 @@ def turnToHay():
         center()
         x.drive_speed(-2.2, 25)
     else:
-        x.drive_speed(5, -50)
+        x.drive_speed(5, -100)#-75
         x.rotate(90, 50)
+        print "Before: " + str(analog(0))
         x.drive_condition(100, 100, seeHay)
         center()
-        x.drive_speed(-2.4, 25)
+        x.drive_speed(-2.4, 75)#50
+        print "After: " + str(analog(0))
     msleep(500)
 
 def stackHay():
     u.move_servo(c.servoArm, c.armCube, 10)#35
     msleep(300)
-    u.move_servo(c.servoClaw, c.clawMid, 30)#50
+    u.move_servo(c.servoClaw, c.clawMid, 60)#30
     msleep(300)
-    u.move_servo(c.servoClaw, c.clawHayGrab, 30)#50
+    u.move_servo(c.servoClaw, c.clawHayGrab, 60)#30
     msleep(300)
-    x.drive_speed(1, -25)
+    x.drive_speed(0.75, -75)#-50
     msleep(300)
     x.rotate(3, 5)
     msleep(1000)
@@ -129,17 +108,11 @@ def stackHay():
     msleep(300)
     x.rotate(3, -5)
     msleep(300)
-    x.drive_speed(2.11, 40)
+    x.drive_speed(2.11, 80)#60
     u.move_servo(c.servoClaw, c.clawClose, 30)#50
     msleep(300)
-    x.drive_speed(3, -50)
+    x.drive_speed(2.7, -100)#-75
     u.move_servo(c.servoArm, c.armUp, 30)#50
-    # u.move_servo(c.servoArm, c.armCube, 50)
-    # msleep(300)
-    # u.move_servo(c.servoClaw, c.clawMid, 50)
-    # msleep(300)
-    # u.move_servo(c.servoClaw, c.clawOpen, 50)
-    # msleep(300)
 
 def seeObject():
     print analog(0)
@@ -156,16 +129,14 @@ def center():
 
 def turnToSecondHay():
     x.pivot_right(-110,50)
-    x.drive_speed(.5, -50)
+    x.drive_speed(.5, -100)#-75
     x.pivot_left(-112,50)
     x.drive_condition(100, 100, seeHay)
     center()
-    x.drive_speed(-2.4, 25)
+    x.drive_speed(-2.4, 75)#50
     msleep(500)
 
 def stackSecondHay():
-    # x.drive_speed(6.2, 50)
-    # msleep(500)
     u.move_servo(c.servoArm, c.armCube, 10)#35
     msleep(300)
     u.move_servo(c.servoClaw, c.clawMid, 30)#50
@@ -173,19 +144,18 @@ def stackSecondHay():
     u.move_servo(c.servoClaw, c.clawOpen, 30)#50
     msleep(300)
 
-    x.drive_speed(1, -25)
+    x.drive_speed(0.75, -75)#-25
     msleep(300)
     x.rotate(3, 5)
-    # x.rotate(5, 50)
     msleep(300)
     u.move_servo(c.servoArm, c.armJustOffTheGround, 20)#40
     msleep(300)
     x.rotate(3, -5)
     msleep(300)
-    x.drive_speed(2.11, 40)
+    x.drive_speed(2.11, 80)#60
     u.move_servo(c.servoClaw, c.clawClose, 30)#50
     msleep(300)
-    x.drive_speed(3, -50)
+    x.drive_speed(2.7, -100)#-50
     if c.isClone:
         u.move_servo(c.servoArm, c.armUp, 15)  # 50
     else:
@@ -193,15 +163,17 @@ def stackSecondHay():
 
 def hayToBarn():
     x.rotate(180,30)
-    x.drive_speed(12,60)
+    #x.drive_speed(12,100)#60
+    x.drive_condition(100,100, seeLine)
     u.move_servo(c.servoArm, c.armCube, 10)
-    x.drive_speed(5, 60)
+    #x.drive_speed(5, 100)#60
     u.move_servo(c.servoArm, c.armJustOffTheGround,10)
     u.move_servo(c.servoClaw, c.clawOpen,30)
     x.rotate(3, 5)
-    x.drive_speed(5, -30)
+    x.drive_speed(5, -90)#-30
     u.move_servo(c.servoArm, c.armDownFurrow, 10)
-    x.drive_speed(10, -70)
+    x.drive_speed(10, -100)#-70
+
 
 def goToFurrow():
     x.rotate(170, 50)
@@ -225,8 +197,9 @@ def putPomsInFurrow():
 
 def getToRamp():
     x.drive_speed(-15, 100)
-    x.rotate(108,50)
+    x.rotate(115,50)
 
+'''
 def getToCenter():
     x.drive_speed(-10, 50)
     msleep(100)
@@ -239,27 +212,16 @@ def getToCenter():
     x.drive_speed(23, 70)
     x.drive_speed(-3, 50)
     msleep(100)
-    x.rotate(-90, 50)
+    x.rotate(-100, 50)
     u.move_servo(c.servoArm, c.armJustOffTheGround, 10)
     msleep(100)
+'''
 
-'''def getToCenter():
-        # x.drive_speed(-10, 50)
-        # msleep(100)
-        # x.rotate(90, 50)
-        # msleep(100)
-        # x.drive_speed(40, 90)
-        # msleep(100)
-        # x.rotate(-90,50)
-        # msleep(100)
-        # x.drive_speed(23, 70)
-        # x.drive_speed(-3, 50)
-        # msleep(100)
-        # x.rotate(-90, 50)
-        # u.move_servo(c.servoArm, c.armJustOffTheGround, 10)
-        # msleep(100)
+def getToCenter():
 
-        x.drive_speed(9, 100)
+
+        x.drive_speed(35, 100)
+        u.DEBUGwithWait()
         msleep(100)
         x.rotate(95, 70)
         msleep(100)
@@ -276,7 +238,6 @@ def getToCenter():
         msleep(100)
         x.drive_timed(-100, -10, 500)
         msleep(100)
-        '''
 
 
 

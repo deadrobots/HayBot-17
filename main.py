@@ -21,7 +21,6 @@ def main():
     act.goToFurrow()
     act.putPomsInFurrow()
     act.getToRamp()
-    u.DEBUGwithWait()
     act.getToCenter()
 
 

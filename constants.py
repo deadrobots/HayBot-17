@@ -31,7 +31,7 @@ armDown = 500
 armDownFurrow= 1000
 
 grabberOpen = 750
-grabberClose = 1540
+grabberClose = 1640
 
 clawClose = 600
 clawMid = 900
