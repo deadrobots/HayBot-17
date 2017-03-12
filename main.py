@@ -10,7 +10,8 @@ def main():
 
     #act.test()
     act.getFirstHay()
-    act.goToFarWall()
+    #act.goToFarWall()
+    act.goToFarWall2()
     act.turnToHay()
     act.stackHay()
     act.turnToSecondHay()
@@ -19,7 +20,8 @@ def main():
     act.stackSecondHay()
     act.hayToBarn()
     act.goToFurrow()
-    act.putPomsInFurrow()
+    #act.putPomsInFurrow()
+    act.putPomsInFurrow2()
     act.getToRamp()
     act.getToCenter()
 

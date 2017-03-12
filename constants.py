@@ -41,6 +41,7 @@ clawHayGrab = 1500
 #Tophat values
 FRONT_TOPHAT = 0
 frontLineFollowerGrey = 1300
+LINE_FOLLOW_TOPHAT = 5
 
 
 if isClone:

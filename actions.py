@@ -7,10 +7,15 @@ headToHead = True
 
 def test():
     print('testing')
-    enable_servos()
-    u.move_servo_timed(c.servoArm, c.armUp, 10)
-    x.drive_speed(86,100)
-    u.DEBUG()
+    #enable_servos()
+    #u.move_servo_timed(c.servoArm, c.armUp, 10)
+    #x.drive_speed(86,100)
+    getFirstHay()
+    goToFarWall2()
+    turnToHay()
+    stackHay()
+    turnToSecondHay()
+
 
 def stackHayTest():
     enable_servos()
@@ -66,6 +71,24 @@ def goToFarWall():
     x.drive_condition(100, 100, seeWall)
     x.drive_speed(14,100)
 
+def goToFarWall2():
+    if c.isClone:
+        x.pivot_left(70, 50)
+    else:
+        x.pivot_left(68, 50)
+    x.drive_speed(45, 100)
+    x.rotate(-40, 50)
+    x._drive(60, 60)
+    while(analog(c.LINE_FOLLOW_TOPHAT) < 1500):
+        pass
+    x._drive(0, 0)
+    x.pivot_right(40, 50)
+    while(seeWall()):
+        if (analog(c.LINE_FOLLOW_TOPHAT) < 1500):
+            x._drive(80,50)
+        else:
+            x._drive(50,80)
+    x.drive_speed(7, 100)
 
 
 def seeWall():
@@ -73,6 +96,7 @@ def seeWall():
 
 def seeHay():
     return analog(0) < 2200
+
 def seeLine():
     return analog(5) < 3000
 
@@ -188,6 +212,22 @@ def putPomsInFurrow():
     u.move_servo(c.servoGrabber, c.grabberClose, 10)
     u.move_servo(c.servoArm, c.armDownFurrow, 10)
     u.move_servo(c.servoGrabber, c.grabberOpen, 10)
+    msleep(300)
+    #u.move_servo(c.servoGrabber, c.grabberOpen, 10)
+    #x.pivot_right(-40,35)
+    u.move_servo_timed(c.servoArm, c.armUp, 10)
+    #x.pivot_right(50,35)
+    msleep(300)
+
+def putPomsInFurrow2():
+    u.move_servo(c.servoArm, c.armDownFurrow, 10)
+    u.move_servo(c.servoGrabber, c.grabberOpen, 10)
+    u.move_servo(c.servoGrabber, c.armUp)
+    u.move_servo(c.servoGrabber, c.armDownFurrow)
+    u.move_servo(c.servoGrabber, c.grabberClose, 10)
+    u.move_servo(c.servoGrabber, c.grabberOpen, 10)
+    u.move_servo_timed(c.servoGrabber, c.armUp, 10)
+    x.pivot_right(-30, 35)
     msleep(300)
     #u.move_servo(c.servoGrabber, c.grabberOpen, 10)
     #x.pivot_right(-40,35)
