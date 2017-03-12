@@ -48,10 +48,36 @@ def init():
     enable_servos()
     u.move_servo(c.servoClaw, c.clawOpen, 100)
     u.move_servo(c.servoArm, c.armUpPom, 100)
-    u.move_servo(c.servoGrabber, c.grabberOpen, 100)
+    u.move_servo(c.servoGrabber, c.grabberStraight, 100)
     msleep(300)
+    position()
+    u.move_servo(c.servoGrabber, c.grabberOpen, 100)
     u.waitForButton()
     c.startTime = seconds()
+
+def position():
+    x.drive_speed(7, 50)
+    x.pivot_left(24, 25)
+
+def smash():
+    u.move_servo(c.servoArm, c.armDownFurrow, 10)
+    u.move_servo(c.servoGrabber, c.grabberOpen, 10)
+    msleep(400)
+    u.move_servo(c.servoArm, c.armUp)
+    print "hello lexie"
+    for _ in range(0, 3):
+        u.move_servo(c.servoGrabber, c.grabberClose)
+        u.move_servo(c.servoArm, c.armDown)
+        msleep(100)
+        u.move_servo(c.servoGrabber, c.grabberOpen)
+        msleep(100)
+        u.move_servo(c.servoArm, c.armUp)
+        msleep(300)
+    u.move_servo(c.servoArm, c.armDown)
+    x.pivot_right(-15, 30)
+    u.move_servo(c.servoArm, c.armUp)
+    u.move_servo(c.servoGrabber, c.grabberClose)
+    x.pivot_right(15, 30)
 
 
 def getFirstHay():
@@ -60,13 +86,14 @@ def getFirstHay():
     x.drive_speed(5, 75)#50
     u.move_servo(c.servoGrabber, c.grabberClose, 50)#30
     u.move_servo(c.servoArm, c.armUp, 100)
+
     # msleep(300)
 
 def goToFarWall():
     if c.isClone:
         x.pivot_left(70, 50)
     else:
-        x.pivot_left(68, 50)
+        x.pivot_left(70, 50)
     x.drive_speed(73, 100)
     x.drive_condition(100, 100, seeWall)
     x.drive_speed(14,100)

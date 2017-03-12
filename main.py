@@ -21,7 +21,8 @@ def main():
     act.hayToBarn()
     act.goToFurrow()
     #act.putPomsInFurrow()
-    act.putPomsInFurrow2()
+    # act.putPomsInFurrow2()
+    act.smash()
     act.getToRamp()
     act.getToCenter()
 
