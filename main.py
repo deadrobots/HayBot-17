@@ -6,6 +6,7 @@ import utils as u
 def main():
     print "running"
     print "testing"
+
     act.init()
 
     #act.test()
@@ -23,7 +24,7 @@ def main():
     #act.putPomsInFurrow()
     # act.putPomsInFurrow2()
     act.smash()
-    act.getToRamp()
+    #act.getToRamp()
     act.getToCenter()
 
 

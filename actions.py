@@ -55,29 +55,10 @@ def init():
     u.waitForButton()
     c.startTime = seconds()
 
+
 def position():
     x.drive_speed(7, 50)
     x.pivot_left(24, 25)
-
-def smash():
-    u.move_servo(c.servoArm, c.armDownFurrow, 10)
-    u.move_servo(c.servoGrabber, c.grabberOpen, 10)
-    msleep(400)
-    u.move_servo(c.servoArm, c.armUp)
-    print "hello lexie"
-    for _ in range(0, 3):
-        u.move_servo(c.servoGrabber, c.grabberClose)
-        u.move_servo(c.servoArm, c.armDown)
-        msleep(100)
-        u.move_servo(c.servoGrabber, c.grabberOpen)
-        msleep(100)
-        u.move_servo(c.servoArm, c.armUp)
-        msleep(300)
-    u.move_servo(c.servoArm, c.armDown)
-    x.pivot_right(-15, 30)
-    u.move_servo(c.servoArm, c.armUp)
-    u.move_servo(c.servoGrabber, c.grabberClose)
-    x.pivot_right(15, 30)
 
 
 def getFirstHay():
@@ -86,6 +67,7 @@ def getFirstHay():
     x.drive_speed(5, 75)#50
     u.move_servo(c.servoGrabber, c.grabberClose, 50)#30
     u.move_servo(c.servoArm, c.armUp, 100)
+
 
     # msleep(300)
 
@@ -262,33 +244,61 @@ def putPomsInFurrow2():
     #x.pivot_right(50,35)
     msleep(300)
 
+def smash():
+    u.move_servo(c.servoArm, c.armDownFurrow, 10)
+    u.move_servo(c.servoGrabber, c.grabberOpen, 10)
+    msleep(400)
+    u.move_servo(c.servoArm, c.armUp)
+    print "hello bela"
+    for _ in range(0, 3):
+        u.move_servo(c.servoGrabber, c.grabberClose)
+        u.move_servo(c.servoArm, c.armDown)
+        msleep(100)
+        u.move_servo(c.servoGrabber, c.grabberOpen)
+        msleep(100)
+        u.move_servo(c.servoArm, c.armUp)
+        msleep(300)
+    u.move_servo(c.servoArm, c.armDown)
+    x.pivot_right(-15, 30)
+    u.move_servo(c.servoGrabber, c.grabberClose)
+    u.move_servo(c.servoGrabber, c.grabberOpen)
+    u.move_servo(c.servoArm, c.armUp)
+    u.move_servo(c.servoGrabber, c.grabberClose)
+    x.pivot_right(15, 30)
+
 def getToRamp():
     x.drive_speed(-15, 100)
-    x.rotate(115,50)
+    x.rotate(100,50)
 
-'''
+
 def getToCenter():
     x.drive_speed(-10, 50)
     msleep(100)
     x.rotate(90, 50)
     msleep(100)
-    x.drive_speed(40, 90)
+    x.drive_speed(43, 90)
     msleep(100)
     x.rotate(-90,50)
+    u.move_servo(c.servoArm, c.armUp, 10)
     msleep(100)
-    x.drive_speed(23, 70)
-    x.drive_speed(-3, 50)
+    x.drive_speed(24, 70)
+    x.drive_speed(-5, 50)
     msleep(100)
-    x.rotate(-100, 50)
-    u.move_servo(c.servoArm, c.armJustOffTheGround, 10)
+    x.drive_timed(90, 20, 3)
     msleep(100)
-'''
+    u.move_servo(c.servoArm, c.armJustOffTheGround)
 
+    u.DEBUGwithWait()
+    #x.rotate(-100, 50)
+    #u.move_servo(c.servoArm, c.armJustOffTheGround, 10)
+    #msleep(100)
+
+
+'''
 def getToCenter():
 
 
         x.drive_speed(35, 100)
-        u.DEBUGwithWait()
         msleep(100)
         x.rotate(95, 70)
         msleep(100)
@@ -305,7 +315,7 @@ def getToCenter():
         msleep(100)
         x.drive_timed(-100, -10, 500)
         msleep(100)
-
+'''
 
 
 
