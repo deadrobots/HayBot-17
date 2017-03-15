@@ -26,7 +26,8 @@ servoGrabber = 1
 armUpPom = 390
 armUp = 1700
 armCube = 1050#1400
-armJustOffTheGround = 400
+armUnderHandle = 700
+armJustOffTheGround = 400 #550
 armDown = 500
 armDownFurrow= 1000
 

@@ -246,11 +246,12 @@ def putPomsInFurrow2():
 
 def smash():
     u.move_servo(c.servoArm, c.armDownFurrow, 10)
+    msleep(100)
     u.move_servo(c.servoGrabber, c.grabberOpen, 10)
     msleep(400)
     u.move_servo(c.servoArm, c.armUp)
     print "hello bela"
-    for _ in range(0, 3):
+    for _ in range(0, 2):
         u.move_servo(c.servoGrabber, c.grabberClose)
         u.move_servo(c.servoArm, c.armDown)
         msleep(100)
@@ -282,11 +283,19 @@ def getToCenter():
     u.move_servo(c.servoArm, c.armUp, 10)
     msleep(100)
     x.drive_speed(24, 70)
+    x.drive_speed(-7, 50)
+    msleep(100)
+    x.drive_timed(90, 20, 2.5)
+    msleep(100)
+    u.move_servo(c.servoArm, c.armUnderHandle)
+    x.drive_timed(20, 90, .2)
+    x.drive_speed(12, 75)
+    u.move_servo(c.servoArm, c.armUp)
+    x.drive_timed(25, 90, .3)
+    x.drive_speed(14, 75)
     x.drive_speed(-5, 50)
     msleep(100)
-    x.drive_timed(90, 20, 3)
-    msleep(100)
-    u.move_servo(c.servoArm, c.armJustOffTheGround)
+    x.rotate(90, 50)
 
     u.DEBUGwithWait()
     #x.rotate(-100, 50)
