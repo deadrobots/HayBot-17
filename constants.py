@@ -11,6 +11,7 @@ startTime = -1
 # Motor ports
 LMOTOR = 0
 RMOTOR = 3
+ARMMOTOR = 1
 
 # Digital ports
 CLONE_SWITCH = 9
@@ -53,19 +54,21 @@ if isClone:
     servoGrabber = 1
 
     armUpPom = 640#390
-    armUp = 2047#1700
-    armCube = 1250#950#1400
-    armJustOffTheGround =775#400
+    armUp = 2000#1700
+    armCube = 1100#950#1400
+    armJustOffTheGround = 500#400
     armDown = 420#500
     armDownFurrow = 1000
 
-    grabberOpen = 750
-    grabberClose = 1750#1540
+    grabberWide = 0
+    grabberOpen = 1500
+    grabberClose = 2047
 
     clawClose = 850
     clawMid = 1350
     clawOpen = 1900
     clawHayGrab = 1500
+
 
 
     #Tophat values

@@ -7,7 +7,10 @@ def main():
     print "running"
     print "testing"
 
+    #act.selfTest()
     act.init()
+    #act.testCode()
+    #act.pomGrabberTest()
 
     #act.test()
     act.getFirstHay()
@@ -17,11 +20,14 @@ def main():
     act.stackHay()
     act.turnToSecondHay()
     act.stackSecondHay()
-    act.turnToSecondHay()
-    act.stackSecondHay()
+    act.turnToThirdHay()
+    act.stackThirdHay()
     act.hayToBarn()
     act.goToFurrow()
-    #act.putPomsInFurrow()
+    act.deliverPoms()
+    u.DEBUGwithWait()
+
+     #act.putPomsInFurrow()
     # act.putPomsInFurrow2()
     act.smash()
     #act.getToRamp()
