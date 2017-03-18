@@ -7,19 +7,19 @@ headToHead = True
 
 def test():
     print('testing')
-    motor_power(1,44)
+    motor_power(c.ARMMOTOR,44)
     msleep(3500)
     u.DEBUGwithWait()
 
 def armUp():
-    motor_power(1, 50)
+    motor_power(c.ARMMOTOR, 50)
     msleep(3500)
-    motor_power(1, 0)
+    motor_power(c.ARMMOTOR, 0)
 
 def armDown():
-    motor_power(1, -37)
+    motor_power(c.ARMMOTOR, -37)
     msleep(3500)
-    motor_power(1, 0)
+    motor_power(c.ARMMOTOR, 0)
 
 
 def stackHayTest():
@@ -197,7 +197,7 @@ def stackHay():
     x.drive_speed(2.11, 80)#60
     u.move_servo(c.servoClaw, c.clawClose, 30)#50
     msleep(300)
-    x.drive_speed(2.7, -100)#-75
+    x.drive_speed(2.7, -100)#-75300
     u.move_servo(c.servoArm, c.armUp, 30)#50
 
 def seeObject():
@@ -298,7 +298,10 @@ def hayToBarn():
     #x.drive_speed(5, 100)#60
     u.move_servo(c.servoArm, c.armJustOffTheGround,10)
     u.move_servo(c.servoClaw, c.clawOpen,30)
-    x.rotate(3, 5)
+    if  c.isClone:
+        x.rotate(3, 5)
+    else:
+        x.rotate(7,5)
     x.drive_speed(5, -90)#-30
     u.move_servo(c.servoArm, c.armDownFurrow, 10)
     x.drive_speed(10, -100)#-70
@@ -311,11 +314,13 @@ def goToFurrow():
 
 def deliverPoms():
     armDown()
-    u.move_servo(c.servoGrabber, c.grabberWide, 10)
     msleep(300)
-    armUp()
+    motor_power(c.ARMMOTOR, 50)
+    msleep(150)
+    u.move_servo(c.servoGrabber, c.grabberWide, 10)
 
-def putPomsInFurrow():
+
+'''def putPomsInFurrow():
     u.move_servo(c.servoArm, c.armDownFurrow, 10)
     u.move_servo(c.servoGrabber, c.grabberOpen, 10)
     x.pivot_right(-30, 35)
@@ -328,9 +333,9 @@ def putPomsInFurrow():
     #x.pivot_right(-40,35)
     u.move_servo_timed(c.servoArm, c.armUp, 10)
     #x.pivot_right(50,35)
-    msleep(300)
+    msleep(300)'''
 
-def putPomsInFurrow2():
+'''def putPomsInFurrow2():
     u.move_servo(c.servoArm, c.armDownFurrow, 10)
     u.move_servo(c.servoGrabber, c.grabberOpen, 10)
     u.move_servo(c.servoGrabber, c.armUp)
@@ -344,9 +349,9 @@ def putPomsInFurrow2():
     #x.pivot_right(-40,35)
     u.move_servo_timed(c.servoArm, c.armUp, 10)
     #x.pivot_right(50,35)
-    msleep(300)
+    msleep(300)'''
 
-def smash():
+'''def smash():
     u.move_servo(c.servoArm, c.armDownFurrow, 10)
     msleep(100)
     u.move_servo(c.servoGrabber, c.grabberOpen, 10)
@@ -367,7 +372,7 @@ def smash():
     u.move_servo(c.servoGrabber, c.grabberOpen)
     u.move_servo(c.servoArm, c.armUp)
     u.move_servo(c.servoGrabber, c.grabberClose)
-    x.pivot_right(15, 30)
+    x.pivot_right(15, 30)'''
 
 def getToRamp():
     x.drive_speed(-15, 100)

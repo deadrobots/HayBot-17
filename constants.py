@@ -24,6 +24,7 @@ servoClaw = 0
 servoArm = 3
 servoGrabber = 1
 
+#Servo values for hay stacking arm
 armUpPom = 390
 armUp = 1700
 armCube = 1050#1400
@@ -32,14 +33,16 @@ armJustOffTheGround = 400 #550
 armDown = 500
 armDownFurrow= 1000
 
-grabberOpen = 750
-grabberClose = 1640
-grabberStraight = 1380
-
+#Values for hay claw
 clawClose = 600
 clawMid = 900
 clawOpen = 1900 #1400
 clawHayGrab = 1500
+
+#Servo values for pom grabber
+grabberOpen = 750
+grabberClose = 1640
+grabberStraight = 1380
 
 #Tophat values
 FRONT_TOPHAT = 0
