@@ -12,7 +12,7 @@ def test():
     u.DEBUGwithWait()
 
 def armUp():
-    motor_power(c.ARMMOTOR, 50)
+    motor_power(c.ARMMOTOR, 60)
     msleep(3500)
     motor_power(c.ARMMOTOR, 0)
 
@@ -68,17 +68,15 @@ def selfTest():
     enable_servos()
     u.move_servo(c.servoArm, c.armUp, 50)
     u.move_servo(c.servoClaw, c.clawClose, 50)
-    msleep(200)
+    msleep(100)
     u.move_servo(c.servoClaw, c.clawOpen, 50)
     armUp()
     u.move_servo(c.servoGrabber, c.grabberClose, 50)
-    msleep(1000)
+    msleep(100)
     u.move_servo(c.servoGrabber, c.grabberWide, 50)
     while seeHay():
         pass
     x.drive_condition(100, 100, seeLine)
-    x.rotate(-90, 50)
-    x.rotate(90, 50)
     u.move_servo(c.servoArm, c.armDown, 50)
     armDown()
 
@@ -90,12 +88,18 @@ def init():
     else:
         print ('I am Prime')
     print ('Testing servos and motors')
+
+    set_servo_position(c.servoGrabber, c.grabberOpen)
+    set_servo_position(c.servoClaw, c.clawOpen)
+
     selfTest()
     print('Put me at back wall and press button')
     u.waitForButton()
     position()
     u.waitForButton()
     c.startTime = seconds()
+
+
 
 def testCode():
     x.drive_speed(10, 50)
@@ -119,6 +123,7 @@ def getFirstHay():
     u.move_servo(c.servoGrabber, c.grabberClose, 50)#30
     u.move_servo(c.servoArm, c.armUp, 100)
     armUp()
+
 
 
     # msleep(300)
@@ -249,8 +254,11 @@ def stackSecondHay():
         u.move_servo(c.servoArm, c.armUp, 15)  # 50
     else:
         u.move_servo(c.servoArm, c.armUp, 30)  # 50
+def square_up_and_drop():
+    x.drive_speed(13, 75)
 
 def turnToThirdHay():
+    x.drive_speed(-13, 75)
     x.pivot_right(-110,50)
     if c.isClone:
         x.drive_speed(.75, -100)
@@ -273,7 +281,7 @@ def stackThirdHay():
     u.move_servo(c.servoClaw, c.clawOpen, 30)#50
     msleep(300)
 
-    x.drive_speed(0.5, -75)#-25
+    #x.drive_speed(0.5, -75)#-25
     msleep(300)
     x.rotate(3, 5)
     msleep(300)
@@ -298,6 +306,7 @@ def hayToBarn():
     #x.drive_speed(5, 100)#60
     u.move_servo(c.servoArm, c.armJustOffTheGround,10)
     u.move_servo(c.servoClaw, c.clawOpen,30)
+    u.DEBUGwithWait()
     if  c.isClone:
         x.rotate(3, 5)
     else:
@@ -314,10 +323,15 @@ def goToFurrow():
 
 def deliverPoms():
     armDown()
+    x.drop_poms()
+    armUp()
+    '''
+    armDown()
     msleep(300)
     motor_power(c.ARMMOTOR, 50)
     msleep(150)
     u.move_servo(c.servoGrabber, c.grabberWide, 10)
+'''
 
 
 '''def putPomsInFurrow():

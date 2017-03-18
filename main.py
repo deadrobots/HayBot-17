@@ -5,32 +5,23 @@ import utils as u
 
 def main():
     print "running"
-    print "testing"
 
-    #act.selfTest()
     act.init()
-    #act.testCode()
-    #act.pomGrabberTest()
-
-    #act.test()
     act.getFirstHay()
-    #act.goToFarWall()
     act.goToFarWall2()
     act.turnToHay()
     act.stackHay()
     act.turnToSecondHay()
     act.stackSecondHay()
+    act.square_up_and_drop()
+    act.deliverPoms()
     act.turnToThirdHay()
     act.stackThirdHay()
     act.hayToBarn()
-    act.goToFurrow()
-    act.deliverPoms()
     u.DEBUGwithWait()
-
-     #act.putPomsInFurrow()
-    # act.putPomsInFurrow2()
+    act.goToFurrow()
+    u.DEBUGwithWait()
     act.smash()
-    #act.getToRamp()
     act.getToCenter()
 
 

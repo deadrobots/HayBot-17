@@ -91,7 +91,6 @@ def arc_radius(angle, turnRadius, speed):  # Turns the robot "angle" degrees by 
     smallCircSeg = (angle / 360.0) * smallCircum
     largeCircSeg = (angle / 360.0) * largeCircum
     if turnRadius < 0:    msleep(300)
-    x.pivot_right(3, -5)
     speed = -speed
     _clear_ticks()
     smallTicks = abs(INCHES_TO_TICKS * smallCircSeg)
@@ -233,3 +232,34 @@ def pivot_left(deg, speed):  # Pivots by moving the left wheel.
     while _left_ticks() <= ticks:
         pass
     freeze_motors()
+
+
+from constants import servoGrabber
+from constants import grabberOpen
+from wallaby import motor_power, set_servo_position
+def drop_poms():
+    port = 1
+    position = 100
+    clear_motor_position_counter(port)
+
+    start_time = seconds()
+    while seconds() < start_time + .5:
+        if get_motor_position_counter(port) < position:
+            motor_power(port, 60)
+        else:
+            motor_power(port, 0)
+
+    while get_servo_position(servoGrabber) > grabberOpen:
+        print(get_motor_position_counter(port))
+        if get_motor_position_counter(port) < position:
+            motor_power(port, 80)
+        else:
+            motor_power(port, 0)
+            set_servo_position(servoGrabber, get_servo_position(servoGrabber) - 50)
+
+    start_time = seconds()
+    while seconds() < start_time + .5:
+        if get_motor_position_counter(port) < position:
+            motor_power(port, 80)
+        else:
+            motor_power(port, 0)
