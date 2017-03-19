@@ -237,6 +237,8 @@ def pivot_left(deg, speed):  # Pivots by moving the left wheel.
 from constants import servoGrabber
 from constants import grabberOpen
 from wallaby import motor_power, set_servo_position
+
+
 def drop_poms():
     port = 1
     position = 100
@@ -263,3 +265,25 @@ def drop_poms():
             motor_power(port, 80)
         else:
             motor_power(port, 0)
+
+from utils import getWait, setWait
+
+def armUp():
+    port = 1
+    position = 580
+    clear_motor_position_counter(port)
+    motor_power(port, 60)
+    setWait(3)
+    while get_motor_position_counter(port) < position and getWait():
+        pass
+    motor_power(port, 0)
+
+def armDown():
+    port = 1
+    position = -550
+    clear_motor_position_counter(port)
+    motor_power(port, -60)
+    setWait(3)
+    while get_motor_position_counter(port) > position and getWait():
+        pass
+    motor_power(port, 0)

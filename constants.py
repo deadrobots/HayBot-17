@@ -30,19 +30,25 @@ armUp = 1700
 armCube = 1050#1400
 armUnderHandle = 700
 armJustOffTheGround = 400 #550
-armDown = 500
+armDown = 250 #500
 armDownFurrow= 1000
 
 #Values for hay claw
-clawClose = 600
+clawClose = 1000 #1450 #600
 clawMid = 900
-clawOpen = 1900 #1400
+clawOpen = 1600 #1200 #1900
 clawHayGrab = 1500
 
 #Servo values for pom grabber
-grabberOpen = 750
-grabberClose = 1640
+# grabberWide = 0
+# grabberOpen = 750
+# grabberClose = 1640
+# grabberStraight = 1380
+grabberWide = 0
+grabberOpen = 1500
+grabberClose = 2047
 grabberStraight = 1380
+
 
 #Tophat values
 FRONT_TOPHAT = 0
@@ -59,6 +65,7 @@ if isClone:
     armUpPom = 640#390
     armUp = 2000#1700
     armCube = 1100#950#1400
+    armUnderHandle = 700
     armJustOffTheGround = 500#400
     armDown = 420#500
     armDownFurrow = 1000
@@ -66,6 +73,7 @@ if isClone:
     grabberWide = 0
     grabberOpen = 1500
     grabberClose = 2047
+    grabberStraight = 1380
 
     clawClose = 850
     clawMid = 1350
@@ -77,3 +85,4 @@ if isClone:
     #Tophat values
     FRONT_TOPHAT = 0
     frontLineFollowerGrey = 1300
+    LINE_FOLLOW_TOPHAT = 5

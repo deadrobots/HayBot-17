@@ -5,21 +5,12 @@ from wallaby import *
 
 headToHead = True
 
+
 def test():
     print('testing')
-    motor_power(c.ARMMOTOR,44)
+    motor_power(c.ARMMOTOR, 44)
     msleep(3500)
     u.DEBUGwithWait()
-
-def armUp():
-    motor_power(c.ARMMOTOR, 60)
-    msleep(3500)
-    motor_power(c.ARMMOTOR, 0)
-
-def armDown():
-    motor_power(c.ARMMOTOR, -37)
-    msleep(3500)
-    motor_power(c.ARMMOTOR, 0)
 
 
 def stackHayTest():
@@ -38,24 +29,25 @@ def stackHayTest():
     msleep(300)
     u.move_servo(c.servoClaw, c.clawOpen, 50)
     msleep(300)
-    x.pivot_right(10,30)
+    x.pivot_right(10, 30)
     msleep(1000)
     u.move_servo(c.servoArm, c.armDown, 40)
     msleep(300)
-    x.drive_speed(1.5,40)
+    x.drive_speed(1.5, 40)
     u.move_servo(c.servoClaw, c.clawClose, 50)
     msleep(300)
     u.move_servo(c.servoArm, c.armUp, 50)
     msleep(1500)
 
+
 def pomGrabberTest():
     enable_servos()
-    armUp()
+    x.armUp()
     msleep(3000)
     u.move_servo(c.servoGrabber, c.grabberClose, 50)
     msleep(1000)
     u.move_servo(c.servoGrabber, c.grabberWide, 50)
-    armDown()
+    x.armDown()
     msleep(3000)
     ''' x.drive_speed(8, 50)
     u.move_servo(c.servoGrabber, c.grabberClose, 20)
@@ -64,13 +56,14 @@ def pomGrabberTest():
     u.DEBUGwithWait()
 '''
 
+
 def selfTest():
     enable_servos()
     u.move_servo(c.servoArm, c.armUp, 50)
     u.move_servo(c.servoClaw, c.clawClose, 50)
     msleep(100)
     u.move_servo(c.servoClaw, c.clawOpen, 50)
-    armUp()
+    x.armUp()
     u.move_servo(c.servoGrabber, c.grabberClose, 50)
     msleep(100)
     u.move_servo(c.servoGrabber, c.grabberWide, 50)
@@ -78,11 +71,11 @@ def selfTest():
         pass
     x.drive_condition(100, 100, seeLine)
     u.move_servo(c.servoArm, c.armDown, 50)
-    armDown()
-
+    x.armDown()
 
 
 def init():
+    x.armDown()
     if c.isClone:
         print ('I am Clone')
     else:
@@ -96,11 +89,13 @@ def init():
     print('Put me at back wall and press button')
     u.waitForButton()
     position()
+    set_servo_position(c.servoClaw, c.clawOpen)
     u.waitForButton()
     c.startTime = seconds()
 
-
-
+def test():
+    x.drive_speed(50,100)
+    exit(0)
 def testCode():
     x.drive_speed(10, 50)
     u.move_servo(c.servoGrabber, c.grabberClose, 20)
@@ -117,16 +112,13 @@ def getFirstHay():
         x.drive_speed(10, 50)
         u.move_servo(c.servoClaw, c.clawClose, 70)
     else:
-        x.drive_speed(2, 75)#50
-        u.move_servo(c.servoClaw, c.clawClose, 70)#50
-        x.drive_speed(5, 75)#50
-    u.move_servo(c.servoGrabber, c.grabberClose, 50)#30
+        x.drive_speed(2, 75)  # 50
+        u.move_servo(c.servoClaw, c.clawClose, 70)  # 50
+        x.drive_speed(5, 75)  # 50
+    u.move_servo(c.servoGrabber, c.grabberClose, 50)  # 30
     u.move_servo(c.servoArm, c.armUp, 100)
-    armUp()
+    x.armUp()
 
-
-
-    # msleep(300)
 
 def goToFarWall():
     if c.isClone:
@@ -135,36 +127,40 @@ def goToFarWall():
         x.pivot_left(70, 50)
     x.drive_speed(73, 100)
     x.drive_condition(100, 100, seeWall)
-    x.drive_speed(14,100)
+    x.drive_speed(14, 100)
+
 
 def goToFarWall2():
     if c.isClone:
         x.pivot_left(70, 50)
     else:
-        x.pivot_left(68, 50)
+        x.pivot_left(72, 50)
     x.drive_speed(45, 100)
     x.rotate(-35, 50)
     x._drive(60, 60)
-    while(analog(c.LINE_FOLLOW_TOPHAT) < 1500):
+    while (analog(c.LINE_FOLLOW_TOPHAT) < 3000):
         pass
     x._drive(0, 0)
     x.pivot_right(40, 50)
-    while(seeWall()):
-        if (analog(c.LINE_FOLLOW_TOPHAT) < 1500):
-            x._drive(80,50)
+    while (seeWall()):
+        if analog(c.LINE_FOLLOW_TOPHAT) < 3000:
+            x._drive(80, 50)
         else:
-            x._drive(50,80)
-    x.drive_speed(7, 100)
+            x._drive(50, 80)
+    x.drive_speed(9, 100)
 
 
 def seeWall():
     return analog(0) < 1000
 
+
 def seeHay():
     return analog(0) < 2200
 
+
 def seeLine():
     return analog(5) < 3000
+
 
 def turnToHay():
     if c.isClone:
@@ -175,42 +171,48 @@ def turnToHay():
         center()
         x.drive_speed(-2.2, 25)
     else:
-        x.drive_speed(5, -100)#-75
-        x.rotate(90, 50)
+        x.drive_speed(5, -100)  # -75
+        x.rotate(97, 50)
         print "Before: " + str(analog(0))
         x.drive_condition(100, 100, seeHay)
         center()
-        x.drive_speed(-2.4, 75)#50
+        x.drive_speed(-2.4, 75)  # 50
     print "After: " + str(analog(0))
     msleep(500)
 
+
+
 def stackHay():
-    u.move_servo(c.servoArm, c.armCube, 10)#35
+    u.move_servo(c.servoArm, c.armCube, 10)  # 35
     msleep(300)
-    u.move_servo(c.servoClaw, c.clawMid, 60)#30
+    u.move_servo(c.servoClaw, c.clawMid, 60)  # 30
     msleep(300)
-    u.move_servo(c.servoClaw, c.clawHayGrab, 60)#30
+    u.move_servo(c.servoClaw, c.clawHayGrab, 60)  # 30
     msleep(300)
-    x.drive_speed(0.75, -75)#-50
+    x.drive_speed(0.75, -75)  # -50
     msleep(300)
     x.rotate(3, 5)
     msleep(1000)
-    u.move_servo(c.servoArm, c.armJustOffTheGround, 20)#40
+    u.move_servo(c.servoArm, c.armJustOffTheGround, 20)  # 40
     msleep(300)
     x.rotate(3, -5)
     msleep(300)
-    x.drive_speed(2.11, 80)#60
-    u.move_servo(c.servoClaw, c.clawClose, 30)#50
+    x.drive_speed(2.11, 80)  # 60
+    u.move_servo(c.servoClaw, c.clawClose, 30)  # 50
     msleep(300)
-    x.drive_speed(2.7, -100)#-75300
-    u.move_servo(c.servoArm, c.armUp, 30)#50
+    x.drive_speed(2.7, -100)  # -75300
+    u.move_servo(c.servoArm, c.armUp, 30)  # 50
+
+
 
 def seeObject():
     print analog(0)
     return analog(0) > 2000
 
+
 def seeObjectAndWait():
     return not seeObject() and u.getWait()
+
 
 def center():
     x.drive_condition(25, -25, seeObject)
@@ -218,113 +220,123 @@ def center():
     x.drive_condition(-25, 25, seeObjectAndWait)
     x.pivot_left(5, -50)
 
+
 def turnToSecondHay():
-    x.pivot_right(-110,50)
+    x.pivot_right(-110, 50)
     if c.isClone:
         x.drive_speed(1, -100)
     else:
-        x.drive_speed(.5, -100)#-75
-    x.pivot_left(-112,50)
+        x.drive_speed(.5, -100)  # -75
+    x.pivot_left(-112, 50)
     x.drive_condition(100, 100, seeHay)
     center()
-    x.drive_speed(-2.4, 75)#50
+    x.drive_speed(-2.4, 75)  # 50
     msleep(500)
 
+
 def stackSecondHay():
-    u.move_servo(c.servoArm, c.armCube, 10)#35
+    u.move_servo(c.servoArm, c.armCube, 10)  # 35
     msleep(300)
-    u.move_servo(c.servoClaw, c.clawMid, 30)#50
+    u.move_servo(c.servoClaw, c.clawMid, 30)  # 50
     msleep(300)
-    u.move_servo(c.servoClaw, c.clawOpen, 30)#50
+    u.move_servo(c.servoClaw, c.clawOpen, 30)  # 50
     msleep(300)
 
-    x.drive_speed(0.5, -75)#-25
+    x.drive_speed(0.5, -75)  # -25
     msleep(300)
     x.rotate(3, 5)
     msleep(300)
-    u.move_servo(c.servoArm, c.armJustOffTheGround, 20)#40
+    u.move_servo(c.servoArm, c.armJustOffTheGround, 20)  # 40
     msleep(300)
     x.rotate(3, -5)
     msleep(300)
-    x.drive_speed(2.11, 80)#60
-    u.move_servo(c.servoClaw, c.clawClose, 30)#50
+    x.drive_speed(2.11, 80)  # 60
+    u.move_servo(c.servoClaw, c.clawClose, 30)  # 50
     msleep(300)
-    x.drive_speed(2.7, -100)#-50
+    x.drive_speed(2.7, -100)  # -50
     if c.isClone:
         u.move_servo(c.servoArm, c.armUp, 15)  # 50
     else:
         u.move_servo(c.servoArm, c.armUp, 30)  # 50
+    u.DEBUGwithWait()
+
+
 def square_up_and_drop():
     x.drive_speed(13, 75)
 
+
 def turnToThirdHay():
     x.drive_speed(-13, 75)
-    x.pivot_right(-110,50)
+    x.pivot_right(-110, 50)
     if c.isClone:
         x.drive_speed(.75, -100)
     else:
-        x.drive_speed(.5, -100)#-75
+        x.drive_speed(.5, -100)  # -75
     if c.isClone:
-        x.pivot_left(-116,50)
+        x.pivot_left(-116, 50)
     else:
         x.pivot_left(-112, 50)
     x.drive_condition(100, 100, seeHay)
     center()
-    x.drive_speed(-2.4, 75)#50
+    x.drive_speed(-2.4, 75)  # 50
     msleep(500)
 
+
 def stackThirdHay():
-    u.move_servo(c.servoArm, c.armCube, 10)#35
+    u.move_servo(c.servoArm, c.armCube, 10)  # 35
     msleep(300)
-    u.move_servo(c.servoClaw, c.clawMid, 30)#50
+    u.move_servo(c.servoClaw, c.clawMid, 30)  # 50
     msleep(300)
-    u.move_servo(c.servoClaw, c.clawOpen, 30)#50
+    u.move_servo(c.servoClaw, c.clawOpen, 30)  # 50
     msleep(300)
 
-    #x.drive_speed(0.5, -75)#-25
+    # x.drive_speed(0.5, -75)#-25
     msleep(300)
     x.rotate(3, 5)
     msleep(300)
-    u.move_servo(c.servoArm, c.armJustOffTheGround, 20)#40
+    u.move_servo(c.servoArm, c.armJustOffTheGround, 20)  # 40
     msleep(300)
     x.rotate(3, -5)
     msleep(300)
-    x.drive_speed(2.11, 80)#60
-    u.move_servo(c.servoClaw, c.clawClose, 30)#50
+    x.drive_speed(2.11, 80)  # 60
+    u.move_servo(c.servoClaw, c.clawClose, 30)  # 50
     msleep(300)
-    x.drive_speed(2.7, -100)#-50
+    x.drive_speed(2.7, -100)  # -50
     if c.isClone:
         u.move_servo(c.servoArm, c.armUp, 15)  # 50
     else:
         u.move_servo(c.servoArm, c.armUp, 30)  # 50
 
+
 def hayToBarn():
-    x.rotate(180,30)
-    #x.drive_speed(12,100)#60
-    x.drive_condition(100,100, seeLine)
+    x.rotate(180, 30)
+    # x.drive_speed(12,100)#60
+    x.drive_condition(100, 100, seeLine)
     u.move_servo(c.servoArm, c.armCube, 10)
-    #x.drive_speed(5, 100)#60
-    u.move_servo(c.servoArm, c.armJustOffTheGround,10)
-    u.move_servo(c.servoClaw, c.clawOpen,30)
+    # x.drive_speed(5, 100)#60
+    u.move_servo(c.servoArm, c.armJustOffTheGround, 10)
+    u.move_servo(c.servoClaw, c.clawOpen, 30)
     u.DEBUGwithWait()
-    if  c.isClone:
+    if c.isClone:
         x.rotate(3, 5)
     else:
-        x.rotate(7,5)
-    x.drive_speed(5, -90)#-30
+        x.rotate(7, 5)
+    x.drive_speed(5, -90)  # -30
     u.move_servo(c.servoArm, c.armDownFurrow, 10)
-    x.drive_speed(10, -100)#-70
+    x.drive_speed(10, -100)  # -70
 
 
 def goToFurrow():
     x.rotate(170, 50)
     u.move_servo(c.servoArm, c.armUp, 10)
-    x.drive_timed(100,80,4) #(10,50)
+    x.drive_timed(100, 80, 4)  # (10,50)
+
 
 def deliverPoms():
-    armDown()
+    x.armDown()
+    msleep(1000)
     x.drop_poms()
-    armUp()
+    x.armUp()
     '''
     armDown()
     msleep(300)
@@ -388,9 +400,10 @@ def deliverPoms():
     u.move_servo(c.servoGrabber, c.grabberClose)
     x.pivot_right(15, 30)'''
 
+
 def getToRamp():
     x.drive_speed(-15, 100)
-    x.rotate(100,50)
+    x.rotate(100, 50)
 
 
 def getToCenter():
@@ -400,7 +413,7 @@ def getToCenter():
     msleep(100)
     x.drive_speed(43, 90)
     msleep(100)
-    x.rotate(-90,50)
+    x.rotate(-90, 50)
     u.move_servo(c.servoArm, c.armUp, 10)
     msleep(100)
     x.drive_speed(24, 70)
@@ -419,9 +432,9 @@ def getToCenter():
     x.rotate(90, 50)
 
     u.DEBUGwithWait()
-    #x.rotate(-100, 50)
-    #u.move_servo(c.servoArm, c.armJustOffTheGround, 10)
-    #msleep(100)
+    # x.rotate(-100, 50)
+    # u.move_servo(c.servoArm, c.armJustOffTheGround, 10)
+    # msleep(100)
 
 
 '''
@@ -446,9 +459,5 @@ def getToCenter():
         x.drive_timed(-100, -10, 500)
         msleep(100)
 '''
-
-
-
-
 
 print "Seconds elapsed: " + str(seconds() - c.startTime)
