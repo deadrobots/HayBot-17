@@ -172,7 +172,7 @@ def turnToHay():
         x.drive_speed(-2.2, 25)
     else:
         x.drive_speed(5, -100)  # -75
-        x.rotate(97, 50)
+        x.rotate(100, 50) #97,-
         print "Before: " + str(analog(0))
         x.drive_condition(100, 100, seeHay)
         center()
@@ -225,10 +225,12 @@ def turnToSecondHay():
     x.pivot_right(-110, 50)
     if c.isClone:
         x.drive_speed(1, -100)
+        x.pivot_left(-110, 50)
     else:
-        x.drive_speed(.5, -100)  # -75
-    x.pivot_left(-112, 50)
+        x.drive_speed(.1, -100)  # -75
+        x.pivot_left(-115, 50)
     x.drive_condition(100, 100, seeHay)
+    u.DEBUGwithWait()
     center()
     x.drive_speed(-2.4, 75)  # 50
     msleep(500)
@@ -258,7 +260,6 @@ def stackSecondHay():
         u.move_servo(c.servoArm, c.armUp, 15)  # 50
     else:
         u.move_servo(c.servoArm, c.armUp, 30)  # 50
-    u.DEBUGwithWait()
 
 
 def square_up_and_drop():

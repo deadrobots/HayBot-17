@@ -17,9 +17,7 @@ def main():
     act.turnToThirdHay()
     act.stackThirdHay()
     act.hayToBarn()
-    u.DEBUGwithWait()
     act.goToFurrow()
-    u.DEBUGwithWait()
     act.smash()
     act.getToCenter()
 
