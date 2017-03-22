@@ -12,6 +12,7 @@ def main():
     act.stackHay()
     act.turnToSecondHay()
     act.stackSecondHay()
+    u.DEBUGwithWait()
     act.square_up_and_drop()
     act.deliverPoms()
     act.turnToThirdHay()

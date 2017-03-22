@@ -108,13 +108,8 @@ def position():
 
 
 def getFirstHay():
-    if c.isClone:
-        x.drive_speed(10, 50)
-        u.move_servo(c.servoClaw, c.clawClose, 70)
-    else:
-        x.drive_speed(2, 75)  # 50
-        u.move_servo(c.servoClaw, c.clawClose, 70)  # 50
-        x.drive_speed(5, 75)  # 50
+    x.drive_speed(10, 50)
+    u.move_servo(c.servoClaw, c.clawClose, 70)
     u.move_servo(c.servoGrabber, c.grabberClose, 50)  # 30
     u.move_servo(c.servoArm, c.armUp, 100)
     x.armUp()
@@ -140,6 +135,9 @@ def goToFarWall2():
     x._drive(60, 60)
     while (analog(c.LINE_FOLLOW_TOPHAT) < 3000):
         pass
+
+    x.drive_condition(-30, 0, seeLine)
+
     x._drive(0, 0)
     x.pivot_right(40, 50)
     while (seeWall()):
@@ -171,12 +169,12 @@ def turnToHay():
         center()
         x.drive_speed(-2.2, 25)
     else:
-        x.drive_speed(5, -100)  # -75
-        x.rotate(100, 50) #97,-
+        x.drive_speed(5, -25)  # -75
+        x.rotate(100, 25) #97,-
         print "Before: " + str(analog(0))
         x.drive_condition(100, 100, seeHay)
         center()
-        x.drive_speed(-2.4, 75)  # 50
+        x.drive_speed(-1.5, 75)  # 50
     print "After: " + str(analog(0))
     msleep(500)
 
@@ -230,9 +228,11 @@ def turnToSecondHay():
         x.drive_speed(.1, -100)  # -75
         x.pivot_left(-115, 50)
     x.drive_condition(100, 100, seeHay)
-    u.DEBUGwithWait()
     center()
-    x.drive_speed(-2.4, 75)  # 50
+    if c.isClone:
+        x.drive_speed(-2.4, 75)  # 50
+    else:
+        x.drive_speed(-1.5, 75)
     msleep(500)
 
 
