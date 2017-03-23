@@ -2,6 +2,7 @@
 
 import actions as act
 import utils as u
+import motorsPlusPlus as x
 
 def main():
     print "running"
@@ -10,18 +11,18 @@ def main():
     act.goToFarWall2()
     act.turnToHay()
     act.stackHay()
+    u.DEBUGwithWait()
     act.turnToSecondHay()
     act.stackSecondHay()
-    u.DEBUGwithWait()
     act.square_up_and_drop()
     act.deliverPoms()
     act.turnToThirdHay()
+    u.DEBUGwithWait()
     act.stackThirdHay()
     act.hayToBarn()
     act.goToFurrow()
     act.smash()
     act.getToCenter()
-
 
 
 if __name__ == "__main__":

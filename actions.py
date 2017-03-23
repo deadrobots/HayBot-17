@@ -84,7 +84,6 @@ def init():
 
     set_servo_position(c.servoGrabber, c.grabberOpen)
     set_servo_position(c.servoClaw, c.clawOpen)
-
     selfTest()
     print('Put me at back wall and press button')
     u.waitForButton()
@@ -96,8 +95,11 @@ def init():
 def test():
     x.drive_speed(50,100)
     exit(0)
+
+
 def testCode():
-    x.drive_speed(10, 50)
+    set_servo_position(c.servoArm, c.armUp) #TEMPORARY
+    x.drive_speed(50, 100)
     u.move_servo(c.servoGrabber, c.grabberClose, 20)
 
 
@@ -133,19 +135,20 @@ def goToFarWall2():
     x.drive_speed(45, 100)
     x.rotate(-35, 50)
     x._drive(60, 60)
-    while (analog(c.LINE_FOLLOW_TOPHAT) < 3000):
+    while (analog(c.LINE_FOLLOW_TOPHAT) < 1500):
         pass
-
-    x.drive_condition(-30, 0, seeLine)
-
     x._drive(0, 0)
-    x.pivot_right(40, 50)
+    x.drive_condition(-30, 2, seeLine)
+    x.pivot_left(40,-50)
+
+#    x.pivot_right(40, 50)
     while (seeWall()):
-        if analog(c.LINE_FOLLOW_TOPHAT) < 3000:
+        if analog(c.LINE_FOLLOW_TOPHAT) < 1500:
             x._drive(80, 50)
         else:
             x._drive(50, 80)
-    x.drive_speed(9, 100)
+    x.drive_speed(15, 100)
+
 
 
 def seeWall():
@@ -157,7 +160,7 @@ def seeHay():
 
 
 def seeLine():
-    return analog(5) < 3000
+    return analog(c.LINE_FOLLOW_TOPHAT) < 1500
 
 
 def turnToHay():
@@ -169,8 +172,14 @@ def turnToHay():
         center()
         x.drive_speed(-2.2, 25)
     else:
-        x.drive_speed(5, -25)  # -75
-        x.rotate(100, 25) #97,-
+        x.drive_speed(5, -50)  # -75
+        x.rotate(100, 50) #97,-
+        x.drive_speed(13,50)
+        x.rotate(-90,50)
+        x.drive_speed(8,50)
+        x.drive_speed(-5,40)
+        x.rotate(94,40)
+        x.drive_speed(3,-40)
         print "Before: " + str(analog(0))
         x.drive_condition(100, 100, seeHay)
         center()
@@ -317,7 +326,6 @@ def hayToBarn():
     # x.drive_speed(5, 100)#60
     u.move_servo(c.servoArm, c.armJustOffTheGround, 10)
     u.move_servo(c.servoClaw, c.clawOpen, 30)
-    u.DEBUGwithWait()
     if c.isClone:
         x.rotate(3, 5)
     else:
