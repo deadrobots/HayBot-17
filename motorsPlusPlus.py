@@ -241,7 +241,7 @@ from wallaby import motor_power, set_servo_position
 
 def drop_poms():
     port = 1
-    position = 100
+    position = 50 #Was 100
     clear_motor_position_counter(port)
 
     start_time = seconds()

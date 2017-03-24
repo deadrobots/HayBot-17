@@ -286,10 +286,12 @@ def turnToThirdHay():
         x.pivot_left(-116, 50)
     else:
         x.pivot_left(-112, 50)
+    u.DEBUGwithWait()
     x.drive_condition(100, 100, seeHay)
     center()
     x.drive_speed(-2.4, 75)  # 50
     msleep(500)
+
 
 
 def stackThirdHay():
