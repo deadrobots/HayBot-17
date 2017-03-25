@@ -241,7 +241,7 @@ from wallaby import motor_power, set_servo_position
 
 def drop_poms():
     port = 1
-    position = 25 #50 #Was 100
+    position = 35 #50 #Was 100
     clear_motor_position_counter(port)
 
     start_time = seconds()
@@ -288,3 +288,31 @@ def armDown():
     while get_motor_position_counter(port) > position and getWait():
         pass
     motor_power(port, 0)
+
+def pickUpBin():
+    port = 1
+    position = 35  # 50 #Was 100
+    clear_motor_position_counter(port)
+
+    start_time = seconds()
+    while seconds() < start_time + .5:
+        if get_motor_position_counter(port) < position:
+            motor_power(port, 60)
+        else:
+            motor_power(port, 0)
+
+    while get_servo_position(servoGrabber) > grabberOpen:
+        print(get_motor_position_counter(port))
+        if get_motor_position_counter(port) < position:
+            motor_power(port, 80)
+        else:
+            motor_power(port, 0)
+            set_servo_position(servoGrabber, get_servo_position(servoGrabber) - 50)
+
+    start_time = seconds()
+    while seconds() < start_time + .5:
+        if get_motor_position_counter(port) < position:
+            motor_power(port, 80)
+        else:
+            motor_power(port, 0)
+
