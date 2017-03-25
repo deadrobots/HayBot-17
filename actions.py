@@ -147,16 +147,17 @@ def goToFarWall2():
             x._drive(80, 50)
         else:
             x._drive(50, 80)
-    x.drive_speed(15, 100)
+    x.rotate(5,40)
+    x.drive_speed(17, 75)
 
 
 
 def seeWall():
-    return analog(0) < 1000
+    return analog(c.ET) < 1000
 
 
 def seeHay():
-    return analog(0) < 2200
+    return analog(c.ET) < 2200
 
 
 def seeLine():
@@ -168,18 +169,19 @@ def turnToHay():
         x.drive_speed(6, -100)
         x.rotate(45, 25)
         x.drive_timed(20, 80, 1.3)
-        x.drive_condition(100, 100, seeHay)
+        x.drive_condition(50, 50, seeHay)
         center()
         x.drive_speed(-2.2, 25)
     else:
         x.drive_speed(5, -50)  # -75
         x.rotate(100, 50) #97,-
-        x.drive_speed(13,50)
+        x.drive_speed(11,80)
         x.rotate(-90,50)
         x.drive_speed(8,50)
         x.drive_speed(-5,40)
         x.rotate(94,40)
         x.drive_speed(3,-40)
+        print "Before: " + str(analog(0))
         print "Before: " + str(analog(0))
         x.drive_condition(100, 100, seeHay)
         center()
@@ -228,6 +230,7 @@ def center():
     x.pivot_left(5, -50)
 
 
+
 def turnToSecondHay():
     x.pivot_right(-110, 50)
     if c.isClone:
@@ -244,6 +247,20 @@ def turnToSecondHay():
         x.drive_speed(-1.5, 75)
     msleep(500)
 
+def GoToSecondHay():
+    x.drive_speed(3,-80)
+    x.rotate(-88.5,50)
+    x.drive_speed(10,70)
+    x.drive_speed(-12,70)
+    x.rotate(93,50)
+    x.drive_condition(50, 50, seeHay)
+    center()
+    if c.isClone:
+        x.drive_speed(-2.4, 75)  # 50
+    else:
+        x.drive_speed(-1.5, 75)
+    msleep(500)
+
 
 def stackSecondHay():
     u.move_servo(c.servoArm, c.armCube, 10)  # 35
@@ -252,7 +269,6 @@ def stackSecondHay():
     msleep(300)
     u.move_servo(c.servoClaw, c.clawOpen, 30)  # 50
     msleep(300)
-
     x.drive_speed(0.5, -75)  # -25
     msleep(300)
     x.rotate(3, 5)
@@ -272,11 +288,11 @@ def stackSecondHay():
 
 
 def square_up_and_drop():
-    x.drive_speed(13, 75)
+    x.drive_speed(15, 75)
 
 
 def turnToThirdHay():
-    x.drive_speed(-13, 75)
+    x.drive_speed(-9, 75)
     x.pivot_right(-110, 50)
     if c.isClone:
         x.drive_speed(.75, -100)
@@ -286,7 +302,6 @@ def turnToThirdHay():
         x.pivot_left(-116, 50)
     else:
         x.pivot_left(-112, 50)
-    u.DEBUGwithWait()
     x.drive_condition(100, 100, seeHay)
     center()
     x.drive_speed(-2.4, 75)  # 50

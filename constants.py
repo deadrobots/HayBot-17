@@ -51,7 +51,7 @@ grabberStraight = 1380
 
 
 #Tophat values
-FRONT_TOPHAT = 0
+ET = 0
 frontLineFollowerGrey = 1300
 LINE_FOLLOW_TOPHAT = 5
 
