@@ -357,6 +357,6 @@ def drive_speed_arm_up(inches, speed):  # Drives an exact distance in inches.
             motor_power(port, -25)
         print(current)
     freeze_motors()
-    armUp()
+    motor_power(port, 10)
     print ticks
     print get_motor_position_counter(RMOTOR)

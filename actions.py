@@ -40,6 +40,8 @@ def getFirstHay():
     u.move_servo(c.servoGrabber, c.grabberClose, 50)  # 30
     x.armUp()
     u.move_servo(c.servoArm, c.armUp, 100)
+    msleep(10000)
+
 
 def goToFarWall2():
     x.drive_speed(-2,50)
@@ -57,7 +59,15 @@ def goToFarWall2():
     x.pivot_left(40,-50)
 
 #    x.pivot_right(40, 50)
-    while (seeWall()):
+
+    u.setWait(4)
+    while u.getWait():
+        if analog(c.LINE_FOLLOW_TOPHAT) < 1500:
+            x._drive(80, 50)
+        else:
+            x._drive(50, 80)
+
+    while dontSeeWall():
         if analog(c.LINE_FOLLOW_TOPHAT) < 1500:
             x._drive(80, 50)
         else:
@@ -69,7 +79,7 @@ def goToFarWall2():
     x.pivot_right(6, 50)
 
 
-def seeWall():
+def dontSeeWall():
     return analog(c.ET) < 1000
 
 
