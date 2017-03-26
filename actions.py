@@ -5,6 +5,12 @@ from wallaby import *
 
 headToHead = True
 
+
+def grayson():
+    x.drive_speed_arm_up(45, 100)
+    exit(0)
+
+
 def position():
     x.drive_speed(4, 50)
     x.pivot_left(30, 25)
@@ -24,7 +30,7 @@ def init():
     selfTest()
     print('Put me at back wall and press button')
     set_servo_position(c.servoClaw, c.clawOpen)
-    u.waitForButton()
+    u.wait4light()
     c.startTime = seconds()
 
 
@@ -41,7 +47,7 @@ def goToFarWall2():
         x.pivot_left(70, 50)
     else:
         x.pivot_left(69, 50)
-    x.drive_speed(45, 100)
+    x.drive_speed_arm_up(45, 100)
     x.rotate(-35, 50)
     x._drive(60, 60)
     while (analog(c.LINE_FOLLOW_TOPHAT) < 1500):
@@ -58,7 +64,7 @@ def goToFarWall2():
             x._drive(50, 80)
 
 
-    x.rotate(5,40)
+    x.rotate(10,40)
     x.drive_speed(17, 75)
     x.pivot_right(6, 50)
 
@@ -79,7 +85,7 @@ def seeLine():
 
 def turnToHay():
     x.drive_speed(6, -70)
-    x.pivot_right(97, 50)
+    x.pivot_right(99, 50)
     x.drive_speed(11,80)
     x.rotate(-90,50)
     x.drive_speed(8,80)
@@ -104,7 +110,7 @@ def stackHay():
     msleep(300)
     u.move_servo(c.servoClaw, c.clawHayGrab, 60)  # 30
     msleep(300)
-    x.drive_speed(0.75, -75)  # -50
+    x.drive_speed(0.25, -75)  # (0.75, -50)
     msleep(300)
     x.rotate(3, 5)
     msleep(1000)
@@ -202,7 +208,7 @@ def deliverPoms():
     x.armDown()
     msleep(1000)
     # x.drop_poms()
-    u.move_servo(c.servoGrabber, c.grabberOpen,4)
+    u.move_servo(c.servoGrabber, c.grabberPomDrop, 4)
     msleep(500)
     x.armUp()
     x.drive_speed(3,30)
@@ -232,9 +238,7 @@ def goToThirdHay():
     x.drive_speed(-18,70)
     x.rotate(96,50)
     x.drive_speed(-2,50)
-    msleep(2000)
     x.drive_condition(38, 38, seeHay)
-    msleep(1000)
     center()
     if c.isClone:
         x.drive_speed(-2.4, 75)
@@ -271,9 +275,14 @@ def stackThirdHay():
 def hayToBarn():
     x.rotate(180, 30)
     x.drive_condition(100, 100, seeLine)
+    x.drive_speed(6, 50)
     u.move_servo(c.servoArm, c.armCube, 10)
+    x.rotate(-84,50)
+    x.drive_speed(2,50)
     u.move_servo(c.servoArm, c.armJustOffTheGround, 10)
-    u.move_servo(c.servoClaw, c.clawOpen, 30)
+    msleep(250)
+    u.move_servo(c.servoClaw,c.clawEnd,10)
+    '''
     if c.isClone:
         x.rotate(3, 5)
     else:
@@ -281,6 +290,7 @@ def hayToBarn():
     x.drive_speed(5, -90)
     u.move_servo(c.servoArm, c.armDownFurrow, 10)
     x.drive_speed(7, -100)
+    '''
 
 def goToBin():
     x.rotate(-90,50)
@@ -289,7 +299,7 @@ def goToBin():
     u.move_servo(c.servoArm,c.armJustOffTheGround)
     x.armDown()
     u.move_servo(c.servoGrabber,c.grabberBinApproach)
-    x.drive_speed(6,50)
+    x.drive_speed(8,50)
     u.waitForButton()
     u.move_servo(c.servoGrabber,c.grabberBinTake)
     x.drive_speed(-10,30)

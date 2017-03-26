@@ -18,7 +18,6 @@ def main():
     act.goToThirdHay()
     act.stackThirdHay()
     act.hayToBarn()
-    act.goToBin()
     u.DEBUGwithWait()
 
 

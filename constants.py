@@ -35,6 +35,7 @@ armDownFurrow= 1000
 
 #Values for hay claw
 clawClose = 1000 #1450 #600
+clawEnd = 1300
 clawMid = 900
 clawOpen = 1600 #1200 #1900
 clawHayGrab = 1500
@@ -48,6 +49,7 @@ grabberWide = 0
 grabberBinApproach = 2047
 grabberBinTake = 1400
 grabberOpen = 1500
+grabberPomDrop = 900
 grabberClose = 2047
 grabberStraight = 1380
 
@@ -56,7 +58,7 @@ grabberStraight = 1380
 ET = 0
 frontLineFollowerGrey = 1300
 LINE_FOLLOW_TOPHAT = 5
-
+STARTLIGHT = 4
 
 if isClone:
  # Servos
@@ -74,6 +76,7 @@ if isClone:
 
     grabberWide = 0
     grabberOpen = 1500
+    grabberPomDrop = 900
     grabberClose = 2047
     grabberStraight = 1380
 

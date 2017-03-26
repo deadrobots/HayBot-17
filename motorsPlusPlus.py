@@ -316,3 +316,47 @@ def pickUpBin():
         else:
             motor_power(port, 0)
 
+def grayson(time):
+    port = 1
+    position = -300
+    clear_motor_position_counter(port)
+    start_time = seconds()
+    current = get_motor_position_counter(port)
+    while seconds() < start_time + .5:
+        if current < position - 50:
+            motor_power(port, 50)
+        elif current > position + 50:
+            motor_power(port, -50)
+
+
+def drive_speed_arm_up(inches, speed):  # Drives an exact distance in inches.
+    print "driving exact distance"
+    if inches < 0:
+        speed = -speed
+    _clear_ticks()
+    ticks = abs(INCHES_TO_TICKS * inches)
+
+    port = 1
+    position = -325
+    clear_motor_position_counter(port)
+    start_time = seconds()
+
+    while _right_ticks() <= ticks:
+        current = get_motor_position_counter(port)
+        if _right_ticks() == _left_ticks():
+            _drive(speed, speed)
+        if _right_ticks() > _left_ticks():
+            _drive(speed, int(speed / 1.3))
+        if _left_ticks() > _right_ticks():
+            _drive(int(speed / 1.3), speed)
+        if current > -300:
+            motor_power(port, -60)
+        elif current < position - 5:
+            motor_power(port, 25)
+        elif current > position + 5:
+            motor_power(port, -25)
+        print(current)
+    freeze_motors()
+    armUp()
+    print ticks
+    print get_motor_position_counter(RMOTOR)
