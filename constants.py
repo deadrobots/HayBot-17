@@ -26,7 +26,7 @@ servoGrabber = 1
 
 #Servo values for hay stacking arm
 armUpPom = 390
-armUp = 1700
+armUp = 1650
 armCube = 850#1400
 armUnderHandle = 700
 armJustOffTheGround = 400 #550

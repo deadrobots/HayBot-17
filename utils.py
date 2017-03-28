@@ -191,7 +191,7 @@ def wait4light():
 from wallaby import left_button, right_button, analog
 
 def calibrate(port):
-    print "Press A button with light on"
+    print "Press left button with light on"
     while not left_button():
         pass
     while left_button():
@@ -202,7 +202,7 @@ def calibrate(port):
         print "Bad calibration"
         return False
 
-    print "Press B button with light off"
+    print "Press right button with light off"
     while not right_button():
         pass
     while right_button():

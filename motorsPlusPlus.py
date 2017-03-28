@@ -274,14 +274,14 @@ def armUp():
     position = 580
     clear_motor_position_counter(port)
     motor_power(port, 60)
-    setWait(3)
+    setWait(10)
     while get_motor_position_counter(port) < position and getWait():
         pass
     motor_power(port, 0)
 
 def armDown():
     port = 1
-    position = -550
+    position = -800 #-550
     clear_motor_position_counter(port)
     motor_power(port, -60)
     setWait(3)
