@@ -31,6 +31,7 @@ def init():
     print('Put me at back wall and press button')
     set_servo_position(c.servoClaw, c.clawOpen)
     u.wait4light()
+    shut_down_in(119.9)
     c.startTime = seconds()
 
 
@@ -58,7 +59,7 @@ def goToFarWall2():
     x.drive_speed(15,100)
     msleep(8000)
     x.drive_speed(-25,100)
-    x.rotate(90,50)
+    x.rotate(93,50) # 90
     x.drive_speed(25,100)
     x.pivot_right(6, 50)
 
@@ -111,7 +112,7 @@ def turnToHay():
     x.pivot_right(6, 50)
     x.drive_speed(-5,70)
     x.rotate(94,40)
-    x.drive_speed(3,-40)
+    # x.drive_speed(3,-40) # odd backup
     print "Before: " + str(analog(0))
     print "Before: " + str(analog(0))
     x.drive_condition(100, 100, seeHay)
