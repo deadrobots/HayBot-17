@@ -125,22 +125,22 @@ def turnToHay():
 
 def stackHay():
     u.move_servo(c.servoArm, c.armCube, 10)  # 35
-    msleep(100)
-    u.move_servo(c.servoClaw, c.clawMid, 60)  # 30
-    msleep(100)
+    #msleep(100)
+    # u.move_servo(c.servoClaw, c.clawMid, 60)  # 30
+    # msleep(100)
     u.move_servo(c.servoClaw, c.clawOpen, 30)  # 50
-    msleep(100)
+    #msleep(100)
     x.drive_speed(0.25, -75)  # (0.75, -50)
-    msleep(100)
-    x.rotate(3, 5)
-    msleep(100)
+    #msleep(100)
+    x.rotate(3, 15)
+    #msleep(100)
     u.move_servo(c.servoArm, c.armJustOffTheGround, 20)  # 40
-    msleep(100)
-    x.rotate(3, -5)
-    msleep(100)
+    #msleep(100)
+    x.rotate(3, -15)
+    #msleep(100)
     x.drive_speed(2.11, 80)  # 60
     u.move_servo(c.servoClaw, c.clawClose, 30)  # 50
-    msleep(100)
+    #msleep(100)
     x.drive_speed(2.7, -100)  # -75300
     u.move_servo(c.servoArm, c.armUp, 30)  # 50
 
