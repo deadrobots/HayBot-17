@@ -128,7 +128,7 @@ def stackHay():
     msleep(100)
     u.move_servo(c.servoClaw, c.clawMid, 60)  # 30
     msleep(100)
-    u.move_servo(c.servoClaw, c.clawHayGrab, 60)  # 30
+    u.move_servo(c.servoClaw, c.clawOpen, 30)  # 50
     msleep(100)
     x.drive_speed(0.25, -75)  # (0.75, -50)
     msleep(100)
