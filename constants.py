@@ -67,7 +67,7 @@ if isClone:
     servoGrabber = 1
 
     armUpPom = 640#390
-    armUp = 2000#1700
+    armUp = 1900#1700
     armCube = 1100#950#1400
     armUnderHandle = 700
     armJustOffTheGround = 500#400

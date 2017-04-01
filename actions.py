@@ -64,9 +64,9 @@ def goToFarWall2():
     else:
         x.drive_speed(15,100)
     if c.isClone:
-        msleep(8300)
+        msleep(9000)
     else:
-        msleep(8000)
+        msleep(9000)
     x.drive_speed(-25,100)
     x.rotate(93,50) # 90
     if c.isClone:
@@ -141,22 +141,22 @@ def turnToHay():
 
 def stackHay():
     u.move_servo(c.servoArm, c.armCube, 10)  # 35
-    #msleep(100)
-    # u.move_servo(c.servoClaw, c.clawMid, 60)  # 30
-    # msleep(100)
+    msleep(100)
+    u.move_servo(c.servoClaw, c.clawMid, 30)  # 30
+    msleep(100)
     u.move_servo(c.servoClaw, c.clawOpen, 30)  # 50
-    #msleep(100)
+    msleep(100)
     x.drive_speed(0.25, -75)  # (0.75, -50)
-    #msleep(100)
+    msleep(100)
     x.rotate(3, 15)
-    #msleep(100)
+    msleep(100)
     u.move_servo(c.servoArm, c.armJustOffTheGround, 20)  # 40
-    #msleep(100)
+    msleep(100)
     x.rotate(3, -15)
-    #msleep(100)
+    msleep(100)
     x.drive_speed(2.11, 80)  # 60
     u.move_servo(c.servoClaw, c.clawClose, 30)  # 50
-    #msleep(100)
+    msleep(100)
     x.drive_speed(2.7, -100)  # -75300
     u.move_servo(c.servoArm, c.armUp, 30)  # 50
 
@@ -311,7 +311,7 @@ def stackThirdHay():
 def hayToBarn():
     x.rotate(180, 30)
     x.drive_condition(100, 100, seeLine)
-    x.drive_speed(4, 100)
+    x.drive_speed(2, 100)
     u.move_servo(c.servoArm, c.armJustOffTheGround, 20)
     u.move_servo(c.servoClaw, c.clawEnd, 10)
     '''
