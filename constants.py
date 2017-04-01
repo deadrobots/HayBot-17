@@ -82,7 +82,7 @@ if isClone:
 
     clawClose = 850
     clawMid = 1350
-    clawOpen = 1900
+    clawOpen = 1400
     clawHayGrab = 1500
 
 

@@ -47,22 +47,33 @@ def getFirstHay():
 def goToFarWall2():
     x.drive_speed(-2,50)
     if c.isClone:
-        x.pivot_left(70, 50)
+        x.pivot_left(72, 50)
     else:
         x.pivot_left(72, 50)
     x.drive_speed_arm_up(60, 100)
-    x.rotate(-90, 50)
+    if c.isClone:
+        x.rotate(-87,50)
+    else:
+        x.rotate(-90, 50)
     x._drive(70, 70)
     while (analog(c.LINE_FOLLOW_TOPHAT) < 1500):
         pass
     x._drive(0, 0)
-    x.drive_speed(15,100)
-    msleep(8000)
+    if c.isClone:
+        x.drive_speed(19,100)
+    else:
+        x.drive_speed(15,100)
+    if c.isClone:
+        msleep(8300)
+    else:
+        msleep(8000)
     x.drive_speed(-25,100)
     x.rotate(93,50) # 90
-    x.drive_speed(25,100)
+    if c.isClone:
+        x.drive_speed(29, 100)
+    else:
+        x.drive_speed(25,100)
     x.pivot_right(6, 50)
-
     '''x.drive_condition(1, 30, seeLine)
 
     #x.pivot_left(40,-50)
@@ -111,16 +122,21 @@ def turnToHay():
     x.drive_speed(14,80)'''
     x.pivot_right(6, 50)
     x.drive_speed(-5,70)
-    x.rotate(94,40)
+    if c.isClone:
+        x.rotate(90,40)
+    else:
+        x.rotate(94,40)
     # x.drive_speed(3,-40) # odd backup
     print "Before: " + str(analog(0))
     print "Before: " + str(analog(0))
-    x.drive_condition(100, 100, seeHay)
+    if c.isClone:
+        x.drive_condition(50, 50, seeHay)
+    else:
+        x.drive_condition(50, 50, seeHay)
     center()
     x.drive_speed(-1.5, 75)
     print "After: " + str(analog(0))
     msleep(500)
-
 
 
 def stackHay():
@@ -297,14 +313,14 @@ def hayToBarn():
     x.drive_condition(100, 100, seeLine)
     x.drive_speed(4, 100)
     u.move_servo(c.servoArm, c.armJustOffTheGround, 20)
-    u.DEBUG()
-    #u.move_servo(c.servoArm, c.armCube, 10)
+    u.move_servo(c.servoClaw, c.clawEnd, 10)
+    '''
     x.rotate(-84,50)
     x.drive_speed(1,50)
     u.move_servo(c.servoArm, c.armJustOffTheGround, 10)
     msleep(250)
     u.move_servo(c.servoClaw,c.clawEnd,10)
-    '''
+    
     if c.isClone:
         x.rotate(3, 5)
     else:
@@ -416,6 +432,7 @@ def testCode():
     set_servo_position(c.servoArm, c.armUp) #TEMPORARY
     x.drive_speed(50, 100)
     u.move_servo(c.servoGrabber, c.grabberClose, 20)
+    u.DEBUGwithWait()
 
 
 print "Seconds elapsed: " + str(seconds() - c.startTime)
